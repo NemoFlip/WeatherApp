@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var endAnimation = false
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        
+        ZStack {
+            Text("Hello, world!")
+                .offset(y: endAnimation ? 0 : getRect().height)
+            LaunchScreen(endAnimation: $endAnimation)
+        }
     }
 }
 

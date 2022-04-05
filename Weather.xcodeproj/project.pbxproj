@@ -11,6 +11,10 @@
 		E195E28327F8D0FB00380F43 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195E28227F8D0FB00380F43 /* ContentView.swift */; };
 		E195E28527F8D0FC00380F43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E195E28427F8D0FC00380F43 /* Assets.xcassets */; };
 		E195E28827F8D0FC00380F43 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E195E28727F8D0FC00380F43 /* Preview Assets.xcassets */; };
+		E195E29127F8D2A900380F43 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195E29027F8D2A900380F43 /* Color.swift */; };
+		E195E29327F8D31900380F43 /* LaunchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195E29227F8D31900380F43 /* LaunchShape.swift */; };
+		E195E29527F8D33800380F43 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195E29427F8D33800380F43 /* LaunchScreen.swift */; };
+		E195E29727F8D36A00380F43 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195E29627F8D36A00380F43 /* View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,11 @@
 		E195E28227F8D0FB00380F43 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E195E28427F8D0FC00380F43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E195E28727F8D0FC00380F43 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E195E29027F8D2A900380F43 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		E195E29227F8D31900380F43 /* LaunchShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchShape.swift; sourceTree = "<group>"; };
+		E195E29427F8D33800380F43 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
+		E195E29627F8D36A00380F43 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		E195E29827F8D40900380F43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +60,11 @@
 		E195E27F27F8D0FB00380F43 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				E195E29827F8D40900380F43 /* Info.plist */,
 				E195E28027F8D0FB00380F43 /* WeatherApp.swift */,
 				E195E28227F8D0FB00380F43 /* ContentView.swift */,
+				E195E28E27F8D12300380F43 /* LaunchView */,
+				E195E28F27F8D27D00380F43 /* Extensions */,
 				E195E28427F8D0FC00380F43 /* Assets.xcassets */,
 				E195E28627F8D0FC00380F43 /* Preview Content */,
 			);
@@ -65,6 +77,24 @@
 				E195E28727F8D0FC00380F43 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E195E28E27F8D12300380F43 /* LaunchView */ = {
+			isa = PBXGroup;
+			children = (
+				E195E29227F8D31900380F43 /* LaunchShape.swift */,
+				E195E29427F8D33800380F43 /* LaunchScreen.swift */,
+			);
+			path = LaunchView;
+			sourceTree = "<group>";
+		};
+		E195E28F27F8D27D00380F43 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E195E29027F8D2A900380F43 /* Color.swift */,
+				E195E29627F8D36A00380F43 /* View.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +167,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E195E29327F8D31900380F43 /* LaunchShape.swift in Sources */,
 				E195E28327F8D0FB00380F43 /* ContentView.swift in Sources */,
+				E195E29727F8D36A00380F43 /* View.swift in Sources */,
+				E195E29527F8D33800380F43 /* LaunchScreen.swift in Sources */,
 				E195E28127F8D0FB00380F43 /* WeatherApp.swift in Sources */,
+				E195E29127F8D2A900380F43 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,9 +306,9 @@
 				DEVELOPMENT_TEAM = 52JF2UH4YM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Weather/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -301,9 +335,9 @@
 				DEVELOPMENT_TEAM = 52JF2UH4YM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Weather/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
