@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var mapVM = MapViewModel()
+    
     @State var endAnimation = false
     var body: some View {
-        
         ZStack {
-            Text("Hello, world!")
-                .offset(y: endAnimation ? 0 : getRect().height)
-            LaunchScreen(endAnimation: $endAnimation)
+            HomeView(mapVM: mapVM)
+            ZStack {
+                if !endAnimation {
+                    LaunchScreen(endAnimation: $endAnimation)
+                        .transition(.move(edge: .top))
+                }
+            }.zIndex(2.0)
         }
     }
 }

@@ -14,8 +14,7 @@ struct LaunchScreen: View {
     @Binding var endAnimation: Bool
     var body: some View {
         ZStack {
-            Color.launchTheme.background
-            
+            Color.launchTheme.background.ignoresSafeArea()
             Group {
                 LaunchShape()
                     .trim(from: 0.1, to: animateSplashShape ? 0.9 : 0)
@@ -38,19 +37,13 @@ struct LaunchScreen: View {
                 .font(.system(size: 35, weight: .bold, design: .rounded))
                 .foregroundColor(.white)
                 .frame(maxHeight: .infinity, alignment: .bottom)
-                .padding(.bottom, getSafeArea().bottom == 0 ? 15 : getSafeArea().bottom)
+                .padding(.bottom, 20)
                 .opacity(animateCircle1 ? 1 : 0)
                 .scaleEffect(endSplashAnimation ? 0 : 1)
         }
-        .offset(y: endAnimation ? (-getRect().height * 1.5) : 0)
-        .ignoresSafeArea()
         .onAppear(perform: {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 startAnimation()
-//            }
         })
-        
-        
     }
     func startAnimation() {
         withAnimation(.spring().delay(0.1)) {
@@ -65,9 +58,8 @@ struct LaunchScreen: View {
         withAnimation(.interactiveSpring(response: 0.7, dampingFraction: 1.05, blendDuration: 1.05).delay(1)) {
             self.endSplashAnimation = true
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.2
-) {
-            withAnimation(.interactiveSpring(response: 0.7, dampingFraction: 1.05, blendDuration: 1.05)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
+            withAnimation(.default) {
                 endAnimation = true
             }
         }
