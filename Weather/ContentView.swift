@@ -14,12 +14,12 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             HomeView(mapVM: mapVM)
-            ZStack {
+            VStack {
                 if !endAnimation {
                     LaunchScreen(endAnimation: $endAnimation)
                         .transition(.move(edge: .top))
                 }
-            }.zIndex(2.0)
+            }
         }
     }
 }
