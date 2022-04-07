@@ -13,6 +13,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var userLocation: CLLocation!
     @Published var userAddress = ""
     @Published var noLocation = false
+    @Published var region: MKCoordinateRegion = MKCoordinateRegion(MKMapRect(x: 0, y: 0, width: 0, height: 0))
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
         case .authorizedWhenInUse:
@@ -33,6 +34,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.userLocation = locations.last
+        self.region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 1000000, longitudinalMeters: 100000)
         self.extractLocation()
     }
     private func extractLocation() {
@@ -45,7 +47,6 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
              
             print(placemarks)
             let address = placemarks.first?.locality ?? ""
-//            address += placemarks.first?.administrativeArea ?? ""
             self.userAddress = address
         }
     }
