@@ -10,12 +10,9 @@ import SwiftUI
 import MapKit
 
 struct SearchBar: UIViewRepresentable {
-    @Binding var region: MKCoordinateRegion
     @Binding var result: [SearchModel]
     func makeUIView(context: Context) -> UISearchBar {
         let searchBar = UISearchBar()
-        let searchBarController = UISearchController()
-        searchBarController.delegate = context.coordinator
         searchBar.autocorrectionType = .no
         searchBar.placeholder = "City name..."
         searchBar.autocapitalizationType = .none
@@ -24,7 +21,7 @@ struct SearchBar: UIViewRepresentable {
     }
     func updateUIView(_ uiView: UISearchBar, context: Context) { }
     
-    class Coordinator: NSObject, UISearchBarDelegate, UISearchControllerDelegate {
+    class Coordinator: NSObject, UISearchBarDelegate {
         let parent: SearchBar
         init(parent: SearchBar) {
             self.parent = parent
@@ -40,7 +37,6 @@ struct SearchBar: UIViewRepresentable {
             
             let requestWorkItem = DispatchWorkItem { [weak self] in
                 mkSearch.start { data, error in
-                    
                     guard let data = data, error == nil else {
                         print("Error downloading cities: \(String(describing: error))")
                         mkSearch.cancel()
@@ -48,7 +44,7 @@ struct SearchBar: UIViewRepresentable {
                     }
                     self?.parent.result.removeAll()
                     self?.parent.result = data.mapItems.map { mapItem in
-                        let tempData = SearchModel(id: mapItem.hashValue, cityName: mapItem.name ?? "", coordinates: mapItem.placemark.coordinate)
+                        let tempData = SearchModel(cityName: mapItem.name ?? "", coordinates: mapItem.placemark.coordinate)
                         return tempData
                     }.filter({ $0.cityName != "" })
                 }

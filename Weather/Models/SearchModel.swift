@@ -8,8 +8,7 @@
 import Foundation
 import CoreLocation
 
-struct SearchModel: Identifiable {
-    var id: Int
+struct SearchModel: Hashable {
     var cityName: String
     var coordinates: CLLocationCoordinate2D
 }

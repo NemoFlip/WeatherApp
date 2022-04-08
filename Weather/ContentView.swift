@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var mapVM = MapViewModel()
-    
     @State var endAnimation = false
     var body: some View {
         ZStack {

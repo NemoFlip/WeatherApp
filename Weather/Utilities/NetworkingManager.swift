@@ -24,7 +24,6 @@ class NetworkingManager {
             .tryMap({ try handleResponse(url: url, output: $0)})
             .retry(3)
             .eraseToAnyPublisher()
-            
     }
     static func handleResponse(url: URL, output: URLSession.DataTaskPublisher.Output) throws -> Data {
         guard let response = output.response as? HTTPURLResponse,

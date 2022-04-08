@@ -11,22 +11,24 @@ import CoreLocation
 class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var locationManager = CLLocationManager()
     @Published var userLocation: CLLocation!
-    @Published var userAddress = ""
+    @Published var trackLocations: Set<SearchModel> = []
     @Published var noLocation = false
-    @Published var region: MKCoordinateRegion = MKCoordinateRegion(MKMapRect(x: 0, y: 0, width: 0, height: 0))
+    @AppStorage("userAddress") var userAddress = ""
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        switch manager.authorizationStatus {
-        case .authorizedWhenInUse:
-            print("Authorized")
-            self.noLocation = false
-            manager.requestLocation()
-        case .denied:
+        if manager.authorizationStatus != .denied {
+            switch manager.authorizationStatus {
+            case .authorizedWhenInUse:
+                print("Authorized")
+                self.noLocation = false
+                manager.requestLocation()
+            default:
+                print("Unknown")
+                self.noLocation = false
+                manager.requestWhenInUseAuthorization()
+            }
+        } else if manager.authorizationStatus == .denied && self.userAddress == "" {
             print("Denied")
             self.noLocation = true
-        default:
-            print("Unknown")
-            self.noLocation = false
-            manager.requestWhenInUseAuthorization()
         }
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -34,7 +36,6 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.userLocation = locations.last
-        self.region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 1000000, longitudinalMeters: 100000)
         self.extractLocation()
     }
     private func extractLocation() {
@@ -44,10 +45,9 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                       print("Error extrancing location: \(String(describing: error))")
                       return
                   }
-             
             print(placemarks)
-            let address = placemarks.first?.locality ?? ""
-            self.userAddress = address
+            self.userAddress = placemarks.first?.locality ?? ""
+            self.trackLocations.insert(SearchModel(cityName: self.userAddress, coordinates: self.userLocation.coordinate))
         }
     }
 }

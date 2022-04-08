@@ -13,41 +13,34 @@ struct HomeView: View {
     @State var result = [SearchModel]()
     var body: some View {
         VStack {
-            Text(mapVM.userAddress)
-                .font(.system(size: 28, weight: .semibold, design: .rounded))
-                .padding(.top, 50)
-                .foregroundColor(.white)
-            VStack(spacing: 0) {
-                SearchBar(region: $mapVM.region, result: $result)
-                Divider()
-                if !self.result.isEmpty {
-                    List(self.result) {place in
-                        VStack(alignment: .leading) {
-                            Text(place.cityName)
-                            
-                        
-                        }
-                        
-                    }
-                    .listStyle(PlainListStyle())
-                    .frame(height: UIScreen.main.bounds.height / 2)
-                } else {
-                    Spacer()
-                        .frame(height: UIScreen.main.bounds.height / 2)
-                }
+            if !mapVM.userAddress.isEmpty {
+                Text(mapVM.userAddress)
+                    .font(.system(size: 28, weight: .semibold, design: .rounded))
+                    .padding(.top, 50)
+            } else {
+                noLocationButtonSection
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding(.horizontal, 25)
-
-        }.onAppear {
-            mapVM.locationManager.delegate = mapVM
+            
+        }.onAppear { mapVM.locationManager.delegate = mapVM }
+        .sheet(isPresented: $mapVM.noLocation) {
+            SearchBarView(mapVM: mapVM, result: $result)
         }
-        
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(mapVM: MapViewModel())
+    }
+}
+
+extension HomeView {
+    private var noLocationButtonSection: some View {
+        Button {
+            mapVM.noLocation.toggle()
+        } label: {
+            Text("Tap to select the city")
+                .foregroundColor(.secondary)
+        }
     }
 }
