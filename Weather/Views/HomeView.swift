@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct HomeView: View {
-    @ObservedObject var mapVM: MapViewModel
+    @EnvironmentObject private var mapVM: MapViewModel
     @State var result = [SearchModel]()
     var body: some View {
         VStack {
@@ -23,14 +23,15 @@ struct HomeView: View {
             
         }.onAppear { mapVM.locationManager.delegate = mapVM }
         .sheet(isPresented: $mapVM.noLocation) {
-            SearchBarView(mapVM: mapVM, result: $result)
+            SearchBarView(result: $result)
         }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(mapVM: MapViewModel())
+        HomeView()
+            .environmentObject(dev.mapVM)
     }
 }
 

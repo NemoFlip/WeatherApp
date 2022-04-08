@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchBarView: View {
-    @ObservedObject var mapVM: MapViewModel
+    @EnvironmentObject private var mapVM: MapViewModel
     @Environment(\.presentationMode) var presentationMode
     @Binding var result: [SearchModel]
     var body: some View {

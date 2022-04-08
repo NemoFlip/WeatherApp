@@ -27,6 +27,7 @@ struct SearchBar: UIViewRepresentable {
             self.parent = parent
         }
         private var pendingRequestWorkItem: DispatchWorkItem?
+        
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
             let req = MKLocalSearch.Request()
             req.region = MKCoordinateRegion(.world)
