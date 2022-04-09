@@ -9,19 +9,18 @@ import SwiftUI
 
 @main
 struct WeatherApp: App {
-    @StateObject private var mapVM = MapViewModel()
     @State var endAnimation = false
     var body: some Scene {
         WindowGroup {
             ZStack {
-                HomeView()
+                ContentView()
                 VStack {
                     if !endAnimation {
                         LaunchScreen(endAnimation: $endAnimation)
                             .transition(.move(edge: .top))
                     }
                 }
-            }.environmentObject(mapVM)
+            }
         }
     }
 }

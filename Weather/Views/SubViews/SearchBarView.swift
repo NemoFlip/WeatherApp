@@ -33,6 +33,7 @@ extension SearchBarView {
                 Button {
                     mapVM.userAddress = place.cityName
                     mapVM.trackLocations.insert(place)
+                    print(mapVM.trackLocations)
                     self.presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text(place.cityName)

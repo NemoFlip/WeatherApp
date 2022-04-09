@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct HomeView: View {
-    @EnvironmentObject private var mapVM: MapViewModel
+    @StateObject var mapVM = MapViewModel()
     @State var result = [SearchModel]()
     var body: some View {
         VStack {
@@ -25,6 +25,7 @@ struct HomeView: View {
         .sheet(isPresented: $mapVM.noLocation) {
             SearchBarView(result: $result)
         }
+        .environmentObject(mapVM)
     }
 }
 

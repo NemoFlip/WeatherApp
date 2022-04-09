@@ -10,6 +10,7 @@
 		E11E781428006E2A00D594D9 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E781328006E2A00D594D9 /* SearchBarView.swift */; };
 		E11E7816280077BD00D594D9 /* CLLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E7815280077BD00D594D9 /* CLLocation.swift */; };
 		E11E781828007BA600D594D9 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E781728007BA600D594D9 /* PreviewProvider.swift */; };
+		E11E78222800927000D594D9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E78212800927000D594D9 /* ContentView.swift */; };
 		E123D18327FCA30D009DA9B2 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E123D18227FCA30D009DA9B2 /* MapViewModel.swift */; };
 		E123D18527FCAB71009DA9B2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E123D18427FCAB71009DA9B2 /* HomeView.swift */; };
 		E13AA8F727FDDFC800EDADDE /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13AA8F627FDDFC800EDADDE /* SearchBar.swift */; };
@@ -21,12 +22,14 @@
 		E195E29327F8D31900380F43 /* LaunchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195E29227F8D31900380F43 /* LaunchShape.swift */; };
 		E195E29527F8D33800380F43 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195E29427F8D33800380F43 /* LaunchScreen.swift */; };
 		E1D7246527FDD79C00CBA26B /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D7246427FDD79C00CBA26B /* NetworkingManager.swift */; };
+		E1F551812802114800B33E12 /* WeatherRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F551802802114800B33E12 /* WeatherRectangleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E11E781328006E2A00D594D9 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		E11E7815280077BD00D594D9 /* CLLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocation.swift; sourceTree = "<group>"; };
 		E11E781728007BA600D594D9 /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
+		E11E78212800927000D594D9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E123D18227FCA30D009DA9B2 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		E123D18427FCAB71009DA9B2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E13AA8F627FDDFC800EDADDE /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
@@ -40,6 +43,7 @@
 		E195E29427F8D33800380F43 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		E195E29827F8D40900380F43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E1D7246427FDD79C00CBA26B /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		E1F551802802114800B33E12 /* WeatherRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRectangleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				E11E781328006E2A00D594D9 /* SearchBarView.swift */,
+				E1F551802802114800B33E12 /* WeatherRectangleView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -66,6 +71,7 @@
 			children = (
 				E11E781228006E0B00D594D9 /* SubViews */,
 				E123D18427FCAB71009DA9B2 /* HomeView.swift */,
+				E11E78212800927000D594D9 /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -226,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E195E29327F8D31900380F43 /* LaunchShape.swift in Sources */,
+				E1F551812802114800B33E12 /* WeatherRectangleView.swift in Sources */,
 				E195E29527F8D33800380F43 /* LaunchScreen.swift in Sources */,
 				E11E7816280077BD00D594D9 /* CLLocation.swift in Sources */,
 				E13AA8F927FDE30100EDADDE /* SearchModel.swift in Sources */,
@@ -235,6 +242,7 @@
 				E11E781428006E2A00D594D9 /* SearchBarView.swift in Sources */,
 				E1D7246527FDD79C00CBA26B /* NetworkingManager.swift in Sources */,
 				E195E28127F8D0FB00380F43 /* WeatherApp.swift in Sources */,
+				E11E78222800927000D594D9 /* ContentView.swift in Sources */,
 				E195E29127F8D2A900380F43 /* Color.swift in Sources */,
 				E11E781828007BA600D594D9 /* PreviewProvider.swift in Sources */,
 			);
