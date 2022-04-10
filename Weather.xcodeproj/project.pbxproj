@@ -21,6 +21,7 @@
 		E195E29127F8D2A900380F43 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195E29027F8D2A900380F43 /* Color.swift */; };
 		E195E29327F8D31900380F43 /* LaunchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195E29227F8D31900380F43 /* LaunchShape.swift */; };
 		E195E29527F8D33800380F43 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195E29427F8D33800380F43 /* LaunchScreen.swift */; };
+		E1CE0D2328033BC8009CF880 /* OffsetTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CE0D2228033BC8009CF880 /* OffsetTabView.swift */; };
 		E1D7246527FDD79C00CBA26B /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D7246427FDD79C00CBA26B /* NetworkingManager.swift */; };
 		E1F551812802114800B33E12 /* WeatherRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F551802802114800B33E12 /* WeatherRectangleView.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		E195E29227F8D31900380F43 /* LaunchShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchShape.swift; sourceTree = "<group>"; };
 		E195E29427F8D33800380F43 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		E195E29827F8D40900380F43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E1CE0D2228033BC8009CF880 /* OffsetTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetTabView.swift; sourceTree = "<group>"; };
 		E1D7246427FDD79C00CBA26B /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		E1F551802802114800B33E12 /* WeatherRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRectangleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +74,7 @@
 				E11E781228006E0B00D594D9 /* SubViews */,
 				E123D18427FCAB71009DA9B2 /* HomeView.swift */,
 				E11E78212800927000D594D9 /* ContentView.swift */,
+				E1CE0D2128033B96009CF880 /* CustomTabBar */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -150,6 +153,14 @@
 				E11E7815280077BD00D594D9 /* CLLocation.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E1CE0D2128033B96009CF880 /* CustomTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				E1CE0D2228033BC8009CF880 /* OffsetTabView.swift */,
+			);
+			path = CustomTabBar;
 			sourceTree = "<group>";
 		};
 		E1D7246327FDD75E00CBA26B /* Utilities */ = {
@@ -234,6 +245,7 @@
 				E195E29327F8D31900380F43 /* LaunchShape.swift in Sources */,
 				E1F551812802114800B33E12 /* WeatherRectangleView.swift in Sources */,
 				E195E29527F8D33800380F43 /* LaunchScreen.swift in Sources */,
+				E1CE0D2328033BC8009CF880 /* OffsetTabView.swift in Sources */,
 				E11E7816280077BD00D594D9 /* CLLocation.swift in Sources */,
 				E13AA8F927FDE30100EDADDE /* SearchModel.swift in Sources */,
 				E123D18327FCA30D009DA9B2 /* MapViewModel.swift in Sources */,

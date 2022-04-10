@@ -10,31 +10,27 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack(spacing: 0) {
-                TabView {
-                    HomeView()
-                    WeatherRectangleView {
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 10) {
-                                ForEach(0..<10) {item in
-                                    VStack(spacing: 5) {
-                                        Text("Now")
-                                        Image(systemName: "cloud.fill")
-                                        Text("7º")
-                                    }
-                                }
-                            }.foregroundColor(.white).padding()
-                        }
-                    } label: {
-                        VStack {
-                            Text("Ожидается дождливая погода около 23:00")
-                                .font(.callout).foregroundColor(.white)
-                            Divider()
-                                
-                        }.padding(10)
-                    }.padding(.horizontal, 20)
+            TabView {
+                HomeView()
+                
+                Text("HELLO WORLD")
+            }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            tabBarSection
+            
+            
+        }.background(Color.launchTheme.background.ignoresSafeArea(.all, edges: .all))
+    }
+}
 
-            }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+
+extension ContentView {
+    var tabBarSection: some View {
+        VStack(spacing: 0) {
             Divider()
             HStack {
                 Spacer(minLength: 0)
@@ -45,12 +41,7 @@ struct ContentView: View {
                         .font(.title2).padding(.trailing)
                 }
             }.padding(10).background(.ultraThinMaterial)
-        }.background(Color.launchTheme.background.ignoresSafeArea(.all, edges: .all))
+        }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
