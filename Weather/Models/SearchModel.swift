@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-struct SearchModel: Hashable {
+struct SearchModel: Hashable, Codable {
     var cityName: String
     var coordinates: CLLocationCoordinate2D
 }

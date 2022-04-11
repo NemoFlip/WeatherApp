@@ -13,8 +13,8 @@ struct HomeView: View {
     @State var result = [SearchModel]()
     var body: some View {
         VStack {
-            if !mapVM.userAddress.isEmpty {
-                Text(mapVM.userAddress)
+            if !mapVM.userLocations.isEmpty {
+                Text(mapVM.userLocations[0].cityName)
                     .font(.system(size: 28, weight: .semibold, design: .rounded))
                     .padding(.top, 50)
             } else {

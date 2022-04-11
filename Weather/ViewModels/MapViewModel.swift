@@ -11,9 +11,11 @@ import CoreLocation
 class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var locationManager = CLLocationManager()
     @Published var userLocation: CLLocation!
-    @Published var trackLocations: Set<SearchModel> = []
+    @Published var trackLocations: [SearchModel] = []
     @Published var noLocation = false
-    @AppStorage("userAddress") var userAddress = ""
+//    let userDefaultsSet = UserDefaults.standard.object(forKey: UserLocationKeys.userLocations) as? [SearchModel] ?? []
+    @AppStorage(UserLocationKeys.userLocations) var userLocations: [SearchModel] = []
+    let userDefaults = UserDefaults.standard
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         if manager.authorizationStatus != .denied {
             switch manager.authorizationStatus {
@@ -26,7 +28,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                 self.noLocation = false
                 manager.requestWhenInUseAuthorization()
             }
-        } else if manager.authorizationStatus == .denied && self.userAddress == "" {
+        } else if manager.authorizationStatus == .denied && self.userLocations.isEmpty {
             print("Denied")
             self.noLocation = true
         }
@@ -46,8 +48,8 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                       return
                   }
             print(placemarks)
-            self.userAddress = placemarks.first?.locality ?? ""
-            self.trackLocations.insert(SearchModel(cityName: self.userAddress, coordinates: self.userLocation.coordinate))
+            let userAddress = placemarks.first?.locality ?? ""
+            self.userLocations.append(SearchModel(cityName: userAddress, coordinates: self.userLocation.coordinate))
         }
     }
 }

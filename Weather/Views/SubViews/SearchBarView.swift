@@ -31,8 +31,7 @@ extension SearchBarView {
         List(self.result, id: \.self) {place in
             VStack(alignment: .leading) {
                 Button {
-                    mapVM.userAddress = place.cityName
-                    mapVM.trackLocations.insert(place)
+                    mapVM.userLocations.append(place)
                     print(mapVM.trackLocations)
                     self.presentationMode.wrappedValue.dismiss()
                 } label: {

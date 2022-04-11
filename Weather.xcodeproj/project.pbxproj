@@ -21,6 +21,8 @@
 		E195E29127F8D2A900380F43 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195E29027F8D2A900380F43 /* Color.swift */; };
 		E195E29327F8D31900380F43 /* LaunchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195E29227F8D31900380F43 /* LaunchShape.swift */; };
 		E195E29527F8D33800380F43 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195E29427F8D33800380F43 /* LaunchScreen.swift */; };
+		E1C3E598280499DD00D357E4 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C3E597280499DD00D357E4 /* Structs.swift */; };
+		E1C3E59A28049FD700D357E4 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C3E59928049FD700D357E4 /* Array.swift */; };
 		E1CE0D2328033BC8009CF880 /* OffsetTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CE0D2228033BC8009CF880 /* OffsetTabView.swift */; };
 		E1D7246527FDD79C00CBA26B /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D7246427FDD79C00CBA26B /* NetworkingManager.swift */; };
 		E1F551812802114800B33E12 /* WeatherRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F551802802114800B33E12 /* WeatherRectangleView.swift */; };
@@ -43,6 +45,8 @@
 		E195E29227F8D31900380F43 /* LaunchShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchShape.swift; sourceTree = "<group>"; };
 		E195E29427F8D33800380F43 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		E195E29827F8D40900380F43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E1C3E597280499DD00D357E4 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		E1C3E59928049FD700D357E4 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		E1CE0D2228033BC8009CF880 /* OffsetTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetTabView.swift; sourceTree = "<group>"; };
 		E1D7246427FDD79C00CBA26B /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		E1F551802802114800B33E12 /* WeatherRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRectangleView.swift; sourceTree = "<group>"; };
@@ -148,11 +152,21 @@
 		E195E28F27F8D27D00380F43 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E1C3E596280499B300D357E4 /* Structs & enums */,
 				E195E29027F8D2A900380F43 /* Color.swift */,
+				E1C3E59928049FD700D357E4 /* Array.swift */,
 				E11E781728007BA600D594D9 /* PreviewProvider.swift */,
 				E11E7815280077BD00D594D9 /* CLLocation.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E1C3E596280499B300D357E4 /* Structs & enums */ = {
+			isa = PBXGroup;
+			children = (
+				E1C3E597280499DD00D357E4 /* Structs.swift */,
+			);
+			path = "Structs & enums";
 			sourceTree = "<group>";
 		};
 		E1CE0D2128033B96009CF880 /* CustomTabBar */ = {
@@ -242,8 +256,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1C3E598280499DD00D357E4 /* Structs.swift in Sources */,
 				E195E29327F8D31900380F43 /* LaunchShape.swift in Sources */,
 				E1F551812802114800B33E12 /* WeatherRectangleView.swift in Sources */,
+				E1C3E59A28049FD700D357E4 /* Array.swift in Sources */,
 				E195E29527F8D33800380F43 /* LaunchScreen.swift in Sources */,
 				E1CE0D2328033BC8009CF880 /* OffsetTabView.swift in Sources */,
 				E11E7816280077BD00D594D9 /* CLLocation.swift in Sources */,
