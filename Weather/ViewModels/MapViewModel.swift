@@ -13,9 +13,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var userLocation: CLLocation!
     @Published var trackLocations: [SearchModel] = []
     @Published var noLocation = false
-//    let userDefaultsSet = UserDefaults.standard.object(forKey: UserLocationKeys.userLocations) as? [SearchModel] ?? []
     @AppStorage(UserLocationKeys.userLocations) var userLocations: [SearchModel] = []
-    let userDefaults = UserDefaults.standard
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         if manager.authorizationStatus != .denied {
             switch manager.authorizationStatus {

@@ -13,7 +13,7 @@ struct WeatherApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                ContentView()
+                HomeView()
                 VStack {
                     if !endAnimation {
                         LaunchScreen(endAnimation: $endAnimation)

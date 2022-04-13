@@ -13,19 +13,24 @@ struct HomeView: View {
     @State var result = [SearchModel]()
     var body: some View {
         VStack {
-            if !mapVM.userLocations.isEmpty {
-                Text(mapVM.userLocations[0].cityName)
-                    .font(.system(size: 28, weight: .semibold, design: .rounded))
-                    .padding(.top, 50)
-            } else {
-                noLocationButtonSection
+            ScrollView(showsIndicators: false) {
+                VStack {
+                    if !mapVM.userLocations.isEmpty {
+                        Text(mapVM.userLocations[0].cityName)
+                            .font(.system(size: 28, weight: .semibold, design: .rounded))
+                    } else {
+                        noLocationButtonSection
+                    }
+                }
             }
-            
-        }.onAppear { mapVM.locationManager.delegate = mapVM }
-        .sheet(isPresented: $mapVM.noLocation) {
-            SearchBarView(result: $result)
-        }
-        .environmentObject(mapVM)
+            tabBarSection
+        }.background(Color.launchTheme.background.ignoresSafeArea())
+        
+        //        .onAppear { mapVM.locationManager.delegate = mapVM }
+        //        .sheet(isPresented: $mapVM.noLocation) {
+        //            SearchBarView(result: $result)
+        //        }
+        //        .environmentObject(mapVM)
     }
 }
 
@@ -44,5 +49,20 @@ extension HomeView {
             Text("Tap to select the city")
                 .foregroundColor(.secondary)
         }
+    }
+    private var tabBarSection: some View {
+        VStack(spacing: 0) {
+            Divider()
+            HStack {
+                Spacer(minLength: 0)
+                Button {
+                    
+                } label: {
+                    Image(systemName: "list.bullet")
+                        .font(.title2).padding(.trailing)
+                        .foregroundColor(.white)
+                }
+            }.padding(10).background(.ultraThinMaterial)
+        }.frame(maxHeight: .infinity, alignment: .bottom)
     }
 }
