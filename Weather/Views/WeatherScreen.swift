@@ -69,16 +69,19 @@ struct WeatherScreen: View {
                 }.padding(.horizontal).padding(.bottom)
             } label: {
                 VStack(alignment: .leading) {
-                    Text("Прогноз на 10 дн")
-                        .font(.subheadline)
-                        .fontWeight(.medium)
+                    HStack(spacing: 3) {
+                        Image(systemName: "calendar")
+                        Text("ПРОГНОЗ НА 10 ДН")
+                            
+                    }.font(.system(size: 14, weight: .semibold, design: .default))
                         .foregroundColor(Color.white.opacity(0.7))
+                    
                     Divider()
                 }.padding()
             }
             
             
-        }.padding(.horizontal, 10).foregroundColor(.white).background(Color.blue.ignoresSafeArea())
+        }.padding(.horizontal, 10).foregroundColor(.white).background(Color.gray.ignoresSafeArea())
     }
 }
 
