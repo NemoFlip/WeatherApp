@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct UserLocationKeys {
     static let userLocations = "user_locations"
 }
+
 
