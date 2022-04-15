@@ -8,29 +8,53 @@
 import SwiftUI
 
 struct WeatherScreen: View {
+    @State var heightRect: CGFloat = .zero
+    @Binding var name: String
     var body: some View {
         ScrollView(showsIndicators: false) {
             headerSection
-            
+
             hourForecastSection
-            
+
             weekForecastSection
             
-        }.padding(.horizontal, 10).foregroundColor(.white).background(Color.gray.ignoresSafeArea())
+            LazyVGrid(columns: [
+                GridItem(.flexible(), spacing: 8),
+                GridItem(.flexible(), spacing: nil)
+            ], alignment: .center, spacing: 8) {
+                ForEach(0..<10) { item in
+                    WeatherRectangleView {
+                        GeometryReader { geo in
+                            VStack {
+                                Text("\(geo.size.width)")
+                                Text("\(UIScreen.main.bounds.width)")
+                            }.padding(.horizontal).preference(key: CustomHeightPreferenceKey.self, value: geo.size.width - 50).frame(maxHeight: .infinity, alignment: .bottom).padding(.bottom) // 50 is header height
+                        }.frame(height: heightRect)
+                    } label: {
+                        
+                            WeatherScreenHeader(showDivider: false, imageSystemName: "sun.max", headerText: "УФ-Индекс")
+                            
+                        
+                    }.onPreferenceChange(CustomHeightPreferenceKey.self) { value in
+                        self.heightRect = value
+                    }
+                }
+            }
+            
+        }.padding(.horizontal, 10).foregroundColor(.white).background(Color.blue.ignoresSafeArea())
+        
     }
 }
-
 struct WeatherScreen_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherScreen()
+        WeatherScreen(name: .constant(""))
     }
 }
 
 extension WeatherScreen {
     private var headerSection: some View {
         VStack(spacing: 2) {
-            
-            Text("Альметьевск")
+            Text(name.localizedCapitalized)
                 .font(.system(size: 28, weight: .regular, design: .default))
             Text("12º")
                 .font(.system(size: 80, weight: .thin, design: .default))
@@ -72,7 +96,7 @@ extension WeatherScreen {
                 }
             }.padding(.horizontal).padding(.bottom)
         } label: {
-            WeatherScreenHeader(imageSystemName: "calendar", headerText: "Прогноз на 10 дн")
+            WeatherScreenHeader(showDivider: true, imageSystemName: "calendar", headerText: "Прогноз на 10 дн")
         }
     }
 }

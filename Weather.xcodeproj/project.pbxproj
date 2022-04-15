@@ -27,6 +27,7 @@
 		E1E3051E28089A94009B6634 /* WeekForecastRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E3051D28089A94009B6634 /* WeekForecastRow.swift */; };
 		E1E3052028089DB5009B6634 /* WeatherScreenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E3051F28089DB5009B6634 /* WeatherScreenHeader.swift */; };
 		E1F551812802114800B33E12 /* WeatherRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F551802802114800B33E12 /* WeatherRectangleView.swift */; };
+		E1FFC8852809CE65006AFEA7 /* CustomHeightPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8842809CE65006AFEA7 /* CustomHeightPreferenceKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		E1E3051D28089A94009B6634 /* WeekForecastRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekForecastRow.swift; sourceTree = "<group>"; };
 		E1E3051F28089DB5009B6634 /* WeatherScreenHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherScreenHeader.swift; sourceTree = "<group>"; };
 		E1F551802802114800B33E12 /* WeatherRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRectangleView.swift; sourceTree = "<group>"; };
+		E1FFC8842809CE65006AFEA7 /* CustomHeightPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeightPreferenceKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 			children = (
 				E1D7246427FDD79C00CBA26B /* NetworkingManager.swift */,
 				E13AA8F627FDDFC800EDADDE /* SearchBar.swift */,
+				E1FFC8842809CE65006AFEA7 /* CustomHeightPreferenceKey.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				E195E28127F8D0FB00380F43 /* WeatherApp.swift in Sources */,
 				E195E29127F8D2A900380F43 /* Color.swift in Sources */,
 				E1E12D6A2807259B00C95588 /* WeatherScreen.swift in Sources */,
+				E1FFC8852809CE65006AFEA7 /* CustomHeightPreferenceKey.swift in Sources */,
 				E11E781828007BA600D594D9 /* PreviewProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

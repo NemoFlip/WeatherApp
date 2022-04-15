@@ -12,25 +12,22 @@ struct HomeView: View {
     @StateObject var mapVM = MapViewModel()
     @State var result = [SearchModel]()
     var body: some View {
-        VStack {
-            ScrollView(showsIndicators: false) {
-                VStack {
-                    if !mapVM.userLocations.isEmpty {
-                        Text(mapVM.userLocations[0].cityName)
-                            .font(.system(size: 28, weight: .semibold, design: .rounded))
-                    } else {
-                        noLocationButtonSection
-                    }
+        ZStack {
+            VStack {
+                if !mapVM.userLocations.isEmpty {
+                    WeatherScreen(name: $mapVM.userLocations[0].cityName)
+                        
+                } else {
+                    noLocationButtonSection
                 }
             }
             tabBarSection
-        }.background(Color.launchTheme.background.ignoresSafeArea())
-        
-        //        .onAppear { mapVM.locationManager.delegate = mapVM }
-        //        .sheet(isPresented: $mapVM.noLocation) {
-        //            SearchBarView(result: $result)
-        //        }
-        //        .environmentObject(mapVM)
+        }
+        .onAppear { mapVM.locationManager.delegate = mapVM }
+        .sheet(isPresented: $mapVM.noLocation) {
+            SearchBarView(result: $result)
+        }
+        .environmentObject(mapVM)
     }
 }
 
@@ -53,6 +50,7 @@ extension HomeView {
     private var tabBarSection: some View {
         VStack(spacing: 0) {
             Divider()
+                .frame(height: 2)
             HStack {
                 Spacer(minLength: 0)
                 Button {
@@ -62,7 +60,7 @@ extension HomeView {
                         .font(.title2).padding(.trailing)
                         .foregroundColor(.white)
                 }
-            }.padding(10).background(.ultraThinMaterial)
+            }.padding(8).background(.ultraThinMaterial)
         }.frame(maxHeight: .infinity, alignment: .bottom)
     }
 }
