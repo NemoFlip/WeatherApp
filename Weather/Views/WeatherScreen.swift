@@ -22,7 +22,7 @@ struct WeatherScreen: View {
                 GridItem(.flexible(), spacing: 8),
                 GridItem(.flexible(), spacing: nil)
             ], alignment: .center, spacing: 8) {
-                ForEach(0..<10) { item in
+                ForEach(0..<8) { item in
                     if item == 0 {
                         WeatherRectangleView {
                             GeometryReader { geo in
@@ -56,7 +56,11 @@ struct WeatherScreen: View {
                     }
                 }
             }
-        }.padding(.horizontal, 10).foregroundColor(.white).background(Color.blue.ignoresSafeArea()) 
+            .padding(.bottom, 50)
+        }
+        .padding(.horizontal, 10)
+        .foregroundColor(.white)
+        .background(Color.blue.ignoresSafeArea())
     }
 }
 struct WeatherScreen_Previews: PreviewProvider {
@@ -93,7 +97,9 @@ extension WeatherScreen {
                     }
                 }
                 
-            }.padding(.horizontal).padding(.bottom)
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
         } label: {
             VStack(alignment: .leading) {
                 Text("Ожидается ясная погода около 19:00")
