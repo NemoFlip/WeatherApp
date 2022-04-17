@@ -16,8 +16,9 @@ struct WeatherRectangleView<Content: View, Label: View>: View {
     }
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            label
-            content
+            label.padding()
+            content.padding(.horizontal)
+                .padding(.bottom)
         }.background(.ultraThinMaterial).clipShape(RoundedRectangle(cornerRadius: 20))
     }
 }

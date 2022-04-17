@@ -15,6 +15,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var noLocation = false
     @AppStorage(UserLocationKeys.userLocations) var userLocations: [SearchModel] = []
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        print(userLocations)
         if manager.authorizationStatus != .denied {
             switch manager.authorizationStatus {
             case .authorizedWhenInUse:
@@ -45,9 +46,10 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                       print("Error extrancing location: \(String(describing: error))")
                       return
                   }
-            print(placemarks)
             let userAddress = placemarks.first?.locality ?? ""
-            self.userLocations.append(SearchModel(cityName: userAddress, coordinates: self.userLocation.coordinate))
+            if !self.userLocations.contains(where: { $0.coordinates == self.userLocation.coordinate }) {
+                self.userLocations.append(SearchModel(cityName: userAddress, coordinates: self.userLocation.coordinate))
+            }
         }
     }
 }

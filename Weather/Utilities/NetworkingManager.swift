@@ -21,7 +21,7 @@ class NetworkingManager {
     
     static func getData(url: URL) -> AnyPublisher<Data, Error> {
         URLSession.shared.dataTaskPublisher(for: url)
-            .tryMap({ try handleResponse(url: url, output: $0)})
+            .tryMap({ try handleResponse(url: url, output: $0) })
             .retry(3)
             .eraseToAnyPublisher()
     }

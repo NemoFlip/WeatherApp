@@ -18,45 +18,8 @@ struct WeatherScreen: View {
             
             weekForecastSection
             
-            LazyVGrid(columns: [
-                GridItem(.flexible(), spacing: 8),
-                GridItem(.flexible(), spacing: nil)
-            ], alignment: .center, spacing: 8) {
-                ForEach(0..<8) { item in
-                    if item == 0 {
-                        WeatherRectangleView {
-                            GeometryReader { geo in
-                                VStack {
-                                    Text("\(UIScreen.main.bounds.width)")
-                                    Text("\(UIScreen.main.bounds.width)")
-                                }
-                                .padding(.horizontal)
-                                .preference(key: CustomHeightPreferenceKey.self, value: geo.size.width - 50)
-                                .frame(maxHeight: .infinity, alignment: .bottom)
-                                .padding(.bottom) // 50 is header height
-                            }.frame(height: heightRect)
-                        } label: {
-                            WeatherScreenHeader(showDivider: false, imageSystemName: "sun.max", headerText: "УФ-Индекс")
-                        }.onPreferenceChange(CustomHeightPreferenceKey.self) { value in
-                            self.heightRect = value
-                            print(heightRect)
-                        }
-                    } else {
-                        WeatherRectangleView {
-                            VStack {
-                                Text("\(UIScreen.main.bounds.width)")
-                            }
-                            .padding(.horizontal)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
-                            .padding(.bottom) // 50 is header height
-                            .frame(height: heightRect)
-                        } label: {
-                            WeatherScreenHeader(showDivider: false, imageSystemName: "sun.max", headerText: "УФ-Индекс")
-                        }
-                    }
-                }
-            }
-            .padding(.bottom, 50)
+            gridOfWeatherInfoSquares
+            
         }
         .padding(.horizontal, 10)
         .foregroundColor(.white)
@@ -96,16 +59,14 @@ extension WeatherScreen {
                         }
                     }
                 }
-                
             }
-            .padding(.horizontal)
-            .padding(.bottom)
+            
         } label: {
             VStack(alignment: .leading) {
                 Text("Ожидается ясная погода около 19:00")
                     .font(.subheadline)
                 Divider()
-            }.padding()
+            }
         }
     }
     private var weekForecastSection: some View {
@@ -114,9 +75,49 @@ extension WeatherScreen {
                 ForEach(0..<11) { item in
                     WeekForecastRow(item: item)
                 }
-            }.padding(.horizontal).padding(.bottom)
+            }
         } label: {
             WeatherScreenHeader(showDivider: true, imageSystemName: "calendar", headerText: "Прогноз на 10 дн")
         }
+    }
+    private var weatherInfoSquarePreference: some View {
+        WeatherRectangleView {
+            GeometryReader { geo in
+                VStack {
+                    Text("\(UIScreen.main.bounds.width)")
+                }
+                .preference(key: CustomHeightPreferenceKey.self, value: geo.size.width - 50) // 50 is header height
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+            }.frame(height: heightRect)
+        } label: {
+            WeatherScreenHeader(showDivider: false, imageSystemName: "sun.max", headerText: "УФ-Индекс")
+        }
+        .onPreferenceChange(CustomHeightPreferenceKey.self) { self.heightRect = $0 }
+    }
+    private var weatherInfoSquare: some View {
+        WeatherRectangleView {
+            VStack {
+                Text("\(UIScreen.main.bounds.width)")
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+            .frame(height: heightRect)
+        } label: {
+            WeatherScreenHeader(showDivider: false, imageSystemName: "sun.max", headerText: "УФ-Индекс")
+        }
+    }
+    private var gridOfWeatherInfoSquares: some View {
+        LazyVGrid(columns: [
+            GridItem(.flexible(), spacing: 8),
+            GridItem(.flexible())
+        ], alignment: .center, spacing: 8) {
+            ForEach(0..<8) { item in
+                if item == 0 {
+                    weatherInfoSquarePreference
+                } else {
+                    weatherInfoSquare
+                }
+            }
+        }
+        .padding(.bottom, 50)
     }
 }

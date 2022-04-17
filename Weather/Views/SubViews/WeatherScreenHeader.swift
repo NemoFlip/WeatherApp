@@ -23,7 +23,7 @@ struct WeatherScreenHeader: View {
             if showDivider {
                 Divider()
             }
-        }.padding()
+        }
     }
 }
 

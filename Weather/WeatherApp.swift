@@ -17,7 +17,7 @@ struct WeatherApp: App {
                 VStack {
                     if !endAnimation {
                         LaunchScreen(endAnimation: $endAnimation)
-                            .transition(.move(edge: .top))
+                            .transition(.opacity)
                     }
                 }
             }
