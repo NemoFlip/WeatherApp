@@ -13,9 +13,9 @@ struct WeatherScreen: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             headerSection
-
+            
             hourForecastSection
-
+            
             weekForecastSection
             
             LazyVGrid(columns: [
@@ -23,26 +23,40 @@ struct WeatherScreen: View {
                 GridItem(.flexible(), spacing: nil)
             ], alignment: .center, spacing: 8) {
                 ForEach(0..<10) { item in
-                    WeatherRectangleView {
-                        GeometryReader { geo in
-                            VStack {
-                                Text("\(geo.size.width)")
-                                Text("\(UIScreen.main.bounds.width)")
-                            }.padding(.horizontal).preference(key: CustomHeightPreferenceKey.self, value: geo.size.width - 50).frame(maxHeight: .infinity, alignment: .bottom).padding(.bottom) // 50 is header height
-                        }.frame(height: heightRect)
-                    } label: {
-                        
+                    if item == 0 {
+                        WeatherRectangleView {
+                            GeometryReader { geo in
+                                VStack {
+                                    Text("\(UIScreen.main.bounds.width)")
+                                    Text("\(UIScreen.main.bounds.width)")
+                                }
+                                .padding(.horizontal)
+                                .preference(key: CustomHeightPreferenceKey.self, value: geo.size.width - 50)
+                                .frame(maxHeight: .infinity, alignment: .bottom)
+                                .padding(.bottom) // 50 is header height
+                            }.frame(height: heightRect)
+                        } label: {
                             WeatherScreenHeader(showDivider: false, imageSystemName: "sun.max", headerText: "УФ-Индекс")
-                            
-                        
-                    }.onPreferenceChange(CustomHeightPreferenceKey.self) { value in
-                        self.heightRect = value
+                        }.onPreferenceChange(CustomHeightPreferenceKey.self) { value in
+                            self.heightRect = value
+                            print(heightRect)
+                        }
+                    } else {
+                        WeatherRectangleView {
+                            VStack {
+                                Text("\(UIScreen.main.bounds.width)")
+                            }
+                            .padding(.horizontal)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+                            .padding(.bottom) // 50 is header height
+                            .frame(height: heightRect)
+                        } label: {
+                            WeatherScreenHeader(showDivider: false, imageSystemName: "sun.max", headerText: "УФ-Индекс")
+                        }
                     }
                 }
             }
-            
-        }.padding(.horizontal, 10).foregroundColor(.white).background(Color.blue.ignoresSafeArea())
-        
+        }.padding(.horizontal, 10).foregroundColor(.white).background(Color.blue.ignoresSafeArea()) 
     }
 }
 struct WeatherScreen_Previews: PreviewProvider {
