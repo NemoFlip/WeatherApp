@@ -48,7 +48,7 @@ extension WeatherScreen {
         }.padding(.top, 50)
     }
     private var hourForecastSection: some View {
-        WeatherRectangleView {
+        WeatherRectangleView(isSquare: false) {
             ScrollView(.horizontal ,showsIndicators: false) {
                 HStack {
                     ForEach(0..<10) {item in
@@ -70,7 +70,7 @@ extension WeatherScreen {
         }
     }
     private var weekForecastSection: some View {
-        WeatherRectangleView {
+        WeatherRectangleView(isSquare: false) {
             VStack(alignment: .leading) {
                 ForEach(0..<11) { item in
                     WeekForecastRow(item: item)
@@ -81,13 +81,11 @@ extension WeatherScreen {
         }
     }
     private var weatherInfoSquarePreference: some View {
-        WeatherRectangleView {
+        WeatherRectangleView(isSquare: true) {
             GeometryReader { geo in
-                VStack {
-                    Text("\(UIScreen.main.bounds.width)")
-                }
-                .preference(key: CustomHeightPreferenceKey.self, value: geo.size.width - 50) // 50 is header height
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+                SunriseView()
+                .preference(key: CustomHeightPreferenceKey.self, value: geo.size.width - 40) // 50 is header height
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             }.frame(height: heightRect)
         } label: {
             WeatherScreenHeader(showDivider: false, imageSystemName: "sun.max", headerText: "УФ-Индекс")
@@ -95,11 +93,9 @@ extension WeatherScreen {
         .onPreferenceChange(CustomHeightPreferenceKey.self) { self.heightRect = $0 }
     }
     private var weatherInfoSquare: some View {
-        WeatherRectangleView {
-            VStack {
-                Text("\(UIScreen.main.bounds.width)")
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+        WeatherRectangleView(isSquare: true) {
+            SunriseView()
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             .frame(height: heightRect)
         } label: {
             WeatherScreenHeader(showDivider: false, imageSystemName: "sun.max", headerText: "УФ-Индекс")
