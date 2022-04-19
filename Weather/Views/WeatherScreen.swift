@@ -13,9 +13,9 @@ struct WeatherScreen: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             headerSection
-            
+
             hourForecastSection
-            
+
             weekForecastSection
             
             gridOfWeatherInfoSquares
@@ -84,7 +84,7 @@ extension WeatherScreen {
         WeatherRectangleView(isSquare: true) {
             GeometryReader { geo in
                 SunriseView()
-                .preference(key: CustomHeightPreferenceKey.self, value: geo.size.width - 40) // 50 is header height
+                .preference(key: CustomHeightPreferenceKey.self, value: geo.size.width - 40) // 40 is header height
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             }.frame(height: heightRect)
         } label: {
@@ -94,9 +94,10 @@ extension WeatherScreen {
     }
     private var weatherInfoSquare: some View {
         WeatherRectangleView(isSquare: true) {
-            SunriseView()
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+            WindView()
+            .frame(maxWidth: .infinity, maxHeight: .infinity) // .leading for all but WindView
             .frame(height: heightRect)
+            
         } label: {
             WeatherScreenHeader(showDivider: false, imageSystemName: "sun.max", headerText: "УФ-Индекс")
         }
