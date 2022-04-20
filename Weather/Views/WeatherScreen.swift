@@ -36,7 +36,7 @@ extension WeatherScreen {
     private var headerSection: some View {
         VStack(spacing: 2) {
             Text(name.localizedCapitalized)
-                .font(.system(size: 28, weight: .regular, design: .default))
+                .font(.system(size: 35, weight: .medium, design: .default))
             Text("12º")
                 .font(.system(size: 80, weight: .thin, design: .default))
             Group {
@@ -51,7 +51,7 @@ extension WeatherScreen {
         WeatherRectangleView(isSquare: false) {
             ScrollView(.horizontal ,showsIndicators: false) {
                 HStack {
-                    ForEach(0..<10) {item in
+                    ForEach(0..<27) {item in
                         VStack(spacing: 8) {
                             Text("Now")
                             Image(systemName: "cloud.fill")
@@ -83,7 +83,7 @@ extension WeatherScreen {
     private var weatherInfoSquarePreference: some View {
         WeatherRectangleView(isSquare: true) {
             GeometryReader { geo in
-                SunriseView()
+                UVIndexView()
                 .preference(key: CustomHeightPreferenceKey.self, value: geo.size.width - 40) // 40 is header height
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             }.frame(height: heightRect)

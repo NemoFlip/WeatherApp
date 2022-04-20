@@ -17,8 +17,9 @@ struct WeatherScreenHeader: View {
                 Image(systemName: imageSystemName)
                 Text(headerText.uppercased())
                     
-            }.font(.system(size: 14, weight: .semibold, design: .default))
-                .secondaryText()
+            }
+            .thickSmallText()
+            .secondaryText()
             
             if showDivider {
                 Divider()

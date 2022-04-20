@@ -13,15 +13,15 @@ struct WeekForecastRow: View {
         VStack(alignment: .leading) {
             HStack(spacing: 35) {
                 Text("Сегодня")
-                    .font(.system(size: 18, weight: .medium, design: .default))
+                    .subTextSquare()
                 Spacer()
                 Image(systemName: "sun.max.fill")
                 Spacer()
                 Text("2º")
                     .secondaryText()
-                    .font(.system(size: 18, weight: .medium, design: .default))
+                    .subTextSquare()
                 Text("19º")
-                    .font(.system(size: 18, weight: .medium, design: .default))
+                    .subTextSquare()
             }
             if item != 10 {
                 Divider()

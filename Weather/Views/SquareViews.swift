@@ -12,11 +12,12 @@ struct UVIndexView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("0")
-                .font(.system(size: 27, weight: .medium, design: .default))
+                .bigInfoTextSquare()
             Text("Low")
-                .font(.system(size: 19, weight: .medium, design: .default))
+                .subTextSquare()
+            Spacer()
             Text("Low for the rest of the day.")
-                .font(.system(size: 14))
+                .smallInfoTextSquare()
         }
     }
 }
@@ -25,10 +26,10 @@ struct SunriseView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("04:31")
-                .font(.system(size: 27, weight: .medium, design: .default))
+                .bigInfoTextSquare()
             Spacer()
             Text("Sunset: 18:57")
-                .font(.system(size: 14))
+                .smallInfoTextSquare()
         }
     }
 }
@@ -38,18 +39,19 @@ struct WindView: View {
         ZStack {
             ZStack {
                 Text("N")
-                    .font(.system(size: 11, weight: .heavy))
+                    .thickSmallText()
+                    .secondaryText()
                     .frame(maxHeight: .infinity, alignment: .top)
                 Circle().stroke(Color.white.opacity(0.5), style: StrokeStyle(lineWidth: 8, lineCap: .butt, lineJoin: .miter, miterLimit: .zero, dash: [1.3]))
                     .scaledToFit()
                 Text("S")
-                    .font(.system(size: 11, weight: .heavy))
+                    .thickSmallText()
+                    .secondaryText()
                     .frame(maxHeight: .infinity, alignment: .bottom)
             }
                 
             ArrowShape()
                 .stroke(.white, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
-                
                 .scaledToFit()
                 
                 
@@ -60,9 +62,9 @@ struct WindView: View {
                     
                 VStack {
                     Text("3")
-                        .font(.system(size: 19, weight: .medium, design: .default))
+                        .subTextSquare()
                     Text("м/с")
-                        .font(.system(size: 14))
+                        .smallInfoTextSquare()
                 }
             }.padding(20)
             
