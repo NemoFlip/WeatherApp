@@ -19,7 +19,7 @@ struct BigInfoText: ViewModifier {
 }
 struct SmallInfoText: ViewModifier {
     func body(content: Content) -> some View {
-        content.font(.system(size: 14))
+        content.font(.system(size: 15, weight: .regular))
     }
 }
 struct ThickSmallText: ViewModifier {
@@ -29,7 +29,7 @@ struct ThickSmallText: ViewModifier {
 }
 struct SubTextSquare: ViewModifier {
     func body(content: Content) -> some View {
-        content.font(.system(size: 19, weight: .medium))
+        content.font(.system(size: 19, weight: .semibold))
     }
 }
 extension View {

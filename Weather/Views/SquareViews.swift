@@ -53,9 +53,6 @@ struct WindView: View {
             ArrowShape()
                 .stroke(.white, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
                 .scaledToFit()
-                
-                
-            
             ZStack {
                 Circle().fill(.ultraThinMaterial)
                     .shadow(radius: 1)
@@ -70,6 +67,20 @@ struct WindView: View {
             
         }.padding(.top, 5)
         
+    }
+}
+
+struct RainFallView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("6 mm")
+                .bigInfoTextSquare()
+            Text("in last 6h")
+                .subTextSquare()
+            Spacer()
+            Text("1 mm expected in next 24h")
+                .smallInfoTextSquare()
+        }
     }
 }
 

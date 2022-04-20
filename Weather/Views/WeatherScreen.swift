@@ -94,8 +94,8 @@ extension WeatherScreen {
     }
     private var weatherInfoSquare: some View {
         WeatherRectangleView(isSquare: true) {
-            WindView()
-            .frame(maxWidth: .infinity, maxHeight: .infinity) // .leading for all but WindView
+            RainFallView()
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading) // .leading for all but WindView
             .frame(height: heightRect)
             
         } label: {
