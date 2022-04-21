@@ -8,51 +8,92 @@
 import SwiftUI
 
 struct WeatherScreen: View {
+    @State var offset: CGFloat = .zero
+    var topEdge: CGFloat
+    @State var offsetForHeader: CGFloat = .zero
     @State var heightRect: CGFloat = .zero
     @Binding var name: String
+    @Namespace private var namespace
     var body: some View {
         ScrollView(showsIndicators: false) {
-            headerSection
-
-            hourForecastSection
-
-            weekForecastSection
-            
-            gridOfWeatherInfoSquares
+            VStack {
+                headerSection
+                    .offset(y: -offset) // for staing on top
+                    .offset(y: offset > 0 ? (offset / UIScreen.main.bounds.width) * 100 : 0)  // for dragging to bottom
+                    .offset(y: getTitleOffset())
+                hourForecastSection
+                
+                weekForecastSection
+                
+                gridOfWeatherInfoSquares
+            }
+            .padding(.top, 25)
+            .padding(.top, topEdge)
+            .padding(.horizontal, 10)
+            .overlay {
+                GeometryReader { geo -> Color in
+                    let minY = geo.frame(in: .global).minY
+                    DispatchQueue.main.async {
+                        self.offset = minY
+                    }
+                    return Color.clear
+                }
+            }
             
         }
-        .padding(.horizontal, 10)
         .foregroundColor(.white)
         .background(Color.blue.ignoresSafeArea())
+    }
+    func getTitleOpactiy() -> CGFloat {
+            let titleOffset = -getTitleOffset()
+            let progress = titleOffset / 20
+            let opacity = 1 - progress
+            return opacity
+    }
+    func getTitleOffset() -> CGFloat {
+        if offset < 0 {
+            let progress = -offset / 120
+            let newOffset = (progress <= 1.0 ? progress : 1) * 20 // top padding 25
+            return -newOffset
+        }
+        return 0
     }
 }
 struct WeatherScreen_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherScreen(name: .constant(""))
+        WeatherScreen(topEdge: .zero, name: .constant(""))
     }
 }
 
 extension WeatherScreen {
     private var headerSection: some View {
         VStack(spacing: 2) {
-            Text(name.localizedCapitalized)
-                .font(.system(size: 35, weight: .medium, design: .default))
+                VStack {
+                    Text(name.localizedCapitalized)
+                        .font(.system(size: 35, weight: .medium))
+                    Text("12º")
+                        .opacity(-offset / 20 < 3 ? 0 : 1 - getTitleOpactiy())
+                
+                }
             Text("12º")
-                .font(.system(size: 80, weight: .thin, design: .default))
+                .opacity(getTitleOpactiy())
+                .font(.system(size: 80, weight: .thin))
             Group {
                 Text("Переменная облачность")
                 Text("Макс.: 15º, мин.: 2º")
                     .padding(.bottom, 30)
-            }.font(.system(size: 15, weight: .medium, design: .default))
+            }
+            .opacity(getTitleOpactiy())
+            .font(.system(size: 15, weight: .medium))
             
-        }.padding(.top, 50)
+        }
     }
     private var hourForecastSection: some View {
         WeatherRectangleView(isSquare: false) {
             ScrollView(.horizontal ,showsIndicators: false) {
-                HStack {
+                HStack(spacing: 15) {
                     ForEach(0..<27) {item in
-                        VStack(spacing: 8) {
+                        VStack(spacing: 10) {
                             Text("Now")
                             Image(systemName: "cloud.fill")
                             Text("11º")
@@ -62,11 +103,9 @@ extension WeatherScreen {
             }
             
         } label: {
-            VStack(alignment: .leading) {
-                Text("Ожидается ясная погода около 19:00")
-                    .font(.subheadline)
-                Divider()
-            }
+            Text("Ожидается ясная погода около 19:00")
+                .font(.subheadline)
+            
         }
     }
     private var weekForecastSection: some View {
@@ -77,29 +116,29 @@ extension WeatherScreen {
                 }
             }
         } label: {
-            WeatherScreenHeader(showDivider: true, imageSystemName: "calendar", headerText: "Прогноз на 10 дн")
+            WeatherScreenHeader(imageSystemName: "calendar", headerText: "Прогноз на 10 дн")
         }
     }
     private var weatherInfoSquarePreference: some View {
         WeatherRectangleView(isSquare: true) {
             GeometryReader { geo in
                 UVIndexView()
-                .preference(key: CustomHeightPreferenceKey.self, value: geo.size.width - 40) // 40 is header height
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                    .preference(key: CustomHeightPreferenceKey.self, value: geo.size.width - 40) // 40 is header height
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             }.frame(height: heightRect)
         } label: {
-            WeatherScreenHeader(showDivider: false, imageSystemName: "sun.max", headerText: "УФ-Индекс")
+            WeatherScreenHeader(imageSystemName: "sun.max", headerText: "УФ-Индекс")
         }
         .onPreferenceChange(CustomHeightPreferenceKey.self) { self.heightRect = $0 }
     }
     private var weatherInfoSquare: some View {
         WeatherRectangleView(isSquare: true) {
             RainFallView()
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading) // .leading for all but WindView
-            .frame(height: heightRect)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading) // .leading for all but WindView
+                .frame(height: heightRect)
             
         } label: {
-            WeatherScreenHeader(showDivider: false, imageSystemName: "sun.max", headerText: "УФ-Индекс")
+            WeatherScreenHeader(imageSystemName: "sun.max", headerText: "УФ-Индекс")
         }
     }
     private var gridOfWeatherInfoSquares: some View {

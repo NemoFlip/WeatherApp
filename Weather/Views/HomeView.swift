@@ -15,8 +15,12 @@ struct HomeView: View {
         ZStack {
             VStack {
                 if !mapVM.userLocations.isEmpty {
-                    WeatherScreen(name: $mapVM.userLocations[0].cityName)
-                        
+                    GeometryReader { geo in
+                        let top = geo.safeAreaInsets.top
+                        WeatherScreen(topEdge: top, name: $mapVM.userLocations[0].cityName)
+                            .ignoresSafeArea(.all, edges: .top)
+                    }
+                    
                 } else {
                     noLocationButtonSection
                 }

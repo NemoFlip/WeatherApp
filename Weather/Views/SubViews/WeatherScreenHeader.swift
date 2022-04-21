@@ -8,28 +8,21 @@
 import SwiftUI
 
 struct WeatherScreenHeader: View {
-    var showDivider: Bool
     var imageSystemName: String
     var headerText: String
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack(spacing: 3) {
-                Image(systemName: imageSystemName)
-                Text(headerText.uppercased())
-                    
-            }
-            .thickSmallText()
-            .secondaryText()
+        HStack(spacing: 3) {
+            Image(systemName: imageSystemName)
+            Text(headerText.uppercased())
             
-            if showDivider {
-                Divider()
-            }
         }
+        .thickSmallText()
+        .secondaryText()
     }
 }
 
 struct WeatherScreenHeader_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherScreenHeader(showDivider: true, imageSystemName: "calendar", headerText: "Hour forecast")
+        WeatherScreenHeader(imageSystemName: "calendar", headerText: "Hour forecast")
     }
 }
