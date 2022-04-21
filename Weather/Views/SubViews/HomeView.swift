@@ -54,7 +54,8 @@ extension HomeView {
     private var tabBarSection: some View {
         VStack(spacing: 0) {
             Divider()
-                .frame(height: 2)
+                .frame(height: 0.4)
+                .background(.white)
             HStack {
                 Spacer(minLength: 0)
                 Button {
@@ -64,7 +65,9 @@ extension HomeView {
                         .font(.title2).padding(.trailing)
                         .foregroundColor(.white)
                 }
-            }.padding(8).background(.ultraThinMaterial)
+            }.padding(8).background(Color.blue.overlay(.ultraThinMaterial).ignoresSafeArea(.all, edges: .bottom))
+
+                
         }.frame(maxHeight: .infinity, alignment: .bottom)
     }
 }

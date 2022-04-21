@@ -85,6 +85,7 @@
 				E1E3051D28089A94009B6634 /* WeekForecastRow.swift */,
 				E1ECD8CC28117B6B008224FC /* CustomCorner.swift */,
 				E1E3051F28089DB5009B6634 /* WeatherScreenHeader.swift */,
+				E123D18427FCAB71009DA9B2 /* HomeView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -93,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				E11E781228006E0B00D594D9 /* SubViews */,
-				E123D18427FCAB71009DA9B2 /* HomeView.swift */,
 				E1E12D692807259B00C95588 /* WeatherScreen.swift */,
 				E1213219280DD37300B0B086 /* SquareViews.swift */,
 			);

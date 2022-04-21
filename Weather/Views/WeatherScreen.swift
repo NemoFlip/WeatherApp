@@ -9,11 +9,11 @@ import SwiftUI
 
 struct WeatherScreen: View {
     @State var offset: CGFloat = .zero
+
     var topEdge: CGFloat
-    @State var offsetForHeader: CGFloat = .zero
     @State var heightRect: CGFloat = .zero
     @Binding var name: String
-    @Namespace private var namespace
+
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
@@ -68,13 +68,16 @@ struct WeatherScreen_Previews: PreviewProvider {
 extension WeatherScreen {
     private var headerSection: some View {
         VStack(spacing: 2) {
-                VStack {
                     Text(name.localizedCapitalized)
                         .font(.system(size: 35, weight: .medium))
-                    Text("12º")
+                        HStack {
+                            Text("12º")
+                            Text("|")
+                            Text("Переменная облачность")
+                        }
                         .opacity(-offset / 20 < 3 ? 0 : 1 - getTitleOpactiy())
+                        .font(.system(size: 20, weight: .medium))
                 
-                }
             Text("12º")
                 .opacity(getTitleOpactiy())
                 .font(.system(size: 80, weight: .thin))

@@ -13,7 +13,7 @@ struct WeatherRectangleView<Content: View, Label: View>: View {
     @State var bottomOffset: CGFloat = 0
     let label: Label
     let isSquare: Bool
-    init(isSquare: Bool, @ViewBuilder content: @escaping () -> Content, @ViewBuilder label: @escaping () -> Label) {
+    init(isSquare: Bool, @ViewBuilder content: () -> Content, @ViewBuilder label: () -> Label) {
         self.isSquare = isSquare
         self.content = content()
         self.label = label()
