@@ -19,7 +19,7 @@ struct BigInfoText: ViewModifier {
 }
 struct SmallInfoText: ViewModifier {
     func body(content: Content) -> some View {
-        content.font(.system(size: 15, weight: .regular))
+        content.font(.system(size: 14, weight: .regular))
     }
 }
 struct ThickSmallText: ViewModifier {
@@ -63,5 +63,14 @@ struct ArrowShape: Shape {
             path.move(to: CGPoint(x: rect.maxX, y: rect.midY))
             path.addLine(to: CGPoint(x: rect.maxX - 8, y: rect.midY + 3))
         }
+    }
+}
+
+struct CustomCorner: Shape {
+    var corners: UIRectCorner
+    var radius: CGFloat
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect,byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
     }
 }

@@ -60,13 +60,12 @@ struct WindView: View {
                 VStack {
                     Text("3")
                         .subTextSquare()
-                    Text("м/с")
+                    Text("m/s")
                         .smallInfoTextSquare()
                 }
             }.padding(20)
             
         }.padding(.top, 5)
-        
     }
 }
 
@@ -83,7 +82,63 @@ struct RainFallView: View {
         }
     }
 }
-
+struct FeelsLikeView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("6º")
+                .bigInfoTextSquare()
+            Spacer()
+            Text("Wind is making it feel cooler")
+                .smallInfoTextSquare()
+        }
+    }
+}
+struct HumidityView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("44%")
+                .bigInfoTextSquare()
+            Spacer()
+            Text("The dew point is -3º right now")
+                .smallInfoTextSquare()
+        }
+    }
+}
+struct VisibilityView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("16 km")
+                .bigInfoTextSquare()
+            Spacer()
+            Text("It's perfectly clear right now")
+        }
+    }
+}
+struct PressureView: View {
+    var body: some View {
+        ZStack {
+            Circle()
+                .trim(from: 0.252, to: 1).stroke(Color.white.opacity(0.5), style: StrokeStyle(lineWidth: 9, lineCap: .butt, lineJoin: .miter, dash: [2, 5]))
+                .rotationEffect(.degrees(46))
+                .overlay {
+                    Circle().trim(from: 0.95, to: 1).stroke(Color.white.opacity(0.5), style: StrokeStyle(lineWidth: 9)).foregroundStyle(.blue) // change first param in trim to controll filling
+                        .rotationEffect(.degrees(46))
+                }
+                
+            HStack(spacing: 15) {
+                Text("Low")
+                Text("High")
+            }
+            .smallInfoTextSquare()
+            .frame(maxHeight: .infinity, alignment: .bottom)
+            VStack(spacing: 0) {
+                Image(systemName: "arrow.down").subTextSquare()
+                Text("765").subTextSquare()
+                Text("mm Hg").smallInfoTextSquare()
+            }.padding(.bottom)
+        }.padding(.top, 5)
+    }
+}
 struct SquareViews_Previews: PreviewProvider {
     static var previews: some View {
         WindView()

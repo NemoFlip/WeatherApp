@@ -42,7 +42,7 @@ struct WeatherRectangleView<Content: View, Label: View>: View {
         }
         .cornerRadius(12)
         .opacity(getOpacity())
-        .offset(y: topOffset >= 120 ? 0 :  120 + -topOffset)
+        .offset(y: topOffset >= 120 ? 0 : 120 + -topOffset)
         .background(
             GeometryReader { geo -> Color in
                 let min = geo.frame(in: .global).minY

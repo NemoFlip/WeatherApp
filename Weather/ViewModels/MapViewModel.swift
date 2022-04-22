@@ -11,9 +11,9 @@ import CoreLocation
 class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var locationManager = CLLocationManager()
     @Published var userLocation: CLLocation!
-    @Published var trackLocations: [SearchModel] = []
+    @Published var trackLocations: [SearchModel] = [] // when searching location
     @Published var noLocation = false
-    @AppStorage(UserLocationKeys.userLocations) var userLocations: [SearchModel] = []
+    @AppStorage(UserLocationKeys.userLocations) var userLocations: [SearchModel] = [] // all user locatons
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         print(userLocations)
         if manager.authorizationStatus != .denied {

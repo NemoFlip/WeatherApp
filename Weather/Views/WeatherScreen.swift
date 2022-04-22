@@ -9,18 +9,14 @@ import SwiftUI
 
 struct WeatherScreen: View {
     @State var offset: CGFloat = .zero
-
-    var topEdge: CGFloat
+    var topEdge: CGFloat 
     @State var heightRect: CGFloat = .zero
     @Binding var name: String
-
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
                 headerSection
-                    .offset(y: -offset) // for staing on top
-                    .offset(y: offset > 0 ? (offset / UIScreen.main.bounds.width) * 100 : 0)  // for dragging to bottom
-                    .offset(y: getTitleOffset())
+                    
                 hourForecastSection
                 
                 weekForecastSection
@@ -45,10 +41,10 @@ struct WeatherScreen: View {
         .background(Color.blue.ignoresSafeArea())
     }
     func getTitleOpactiy() -> CGFloat {
-            let titleOffset = -getTitleOffset()
-            let progress = titleOffset / 20
-            let opacity = 1 - progress
-            return opacity
+        let titleOffset = -getTitleOffset()
+        let progress = titleOffset / 20
+        let opacity = 1 - progress
+        return opacity
     }
     func getTitleOffset() -> CGFloat {
         if offset < 0 {
@@ -68,16 +64,16 @@ struct WeatherScreen_Previews: PreviewProvider {
 extension WeatherScreen {
     private var headerSection: some View {
         VStack(spacing: 2) {
-                    Text(name.localizedCapitalized)
-                        .font(.system(size: 35, weight: .medium))
-                        HStack {
-                            Text("12º")
-                            Text("|")
-                            Text("Переменная облачность")
-                        }
-                        .opacity(-offset / 20 < 3 ? 0 : 1 - getTitleOpactiy())
-                        .font(.system(size: 20, weight: .medium))
-                
+            Text(name.localizedCapitalized)
+                .font(.system(size: 35, weight: .medium))
+            HStack {
+                Text("12º")
+                Text("|")
+                Text("Переменная облачность")
+            }
+            .opacity(-offset / 20 < 3 ? 0 : 1 - getTitleOpactiy())
+            .font(.system(size: 20, weight: .medium))
+            
             Text("12º")
                 .opacity(getTitleOpactiy())
                 .font(.system(size: 80, weight: .thin))
@@ -90,6 +86,9 @@ extension WeatherScreen {
             .font(.system(size: 15, weight: .medium))
             
         }
+        .offset(y: -offset) // for staing on top
+        .offset(y: offset > 0 ? (offset / UIScreen.main.bounds.width) * 100 : 0)  // for dragging to bottom
+        .offset(y: getTitleOffset())
     }
     private var hourForecastSection: some View {
         WeatherRectangleView(isSquare: false) {
@@ -125,9 +124,10 @@ extension WeatherScreen {
     private var weatherInfoSquarePreference: some View {
         WeatherRectangleView(isSquare: true) {
             GeometryReader { geo in
-                UVIndexView()
+                PressureView()
+//                    .padding(4) // only for pressure
                     .preference(key: CustomHeightPreferenceKey.self, value: geo.size.width - 40) // 40 is header height
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }.frame(height: heightRect)
         } label: {
             WeatherScreenHeader(imageSystemName: "sun.max", headerText: "УФ-Индекс")
