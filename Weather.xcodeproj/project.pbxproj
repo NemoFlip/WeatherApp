@@ -32,6 +32,7 @@
 		E1E3052028089DB5009B6634 /* WeatherScreenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E3051F28089DB5009B6634 /* WeatherScreenHeader.swift */; };
 		E1F551812802114800B33E12 /* WeatherRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F551802802114800B33E12 /* WeatherRectangleView.swift */; };
 		E1F9BCC12815790F004CCB0D /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9BCC02815790F004CCB0D /* WeatherModel.swift */; };
+		E1F9BCC32815AE67004CCB0D /* WeatherDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9BCC22815AE67004CCB0D /* WeatherDataService.swift */; };
 		E1FFC8852809CE65006AFEA7 /* CustomHeightPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8842809CE65006AFEA7 /* CustomHeightPreferenceKey.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		E1E3051F28089DB5009B6634 /* WeatherScreenHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherScreenHeader.swift; sourceTree = "<group>"; };
 		E1F551802802114800B33E12 /* WeatherRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRectangleView.swift; sourceTree = "<group>"; };
 		E1F9BCC02815790F004CCB0D /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		E1F9BCC22815AE67004CCB0D /* WeatherDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataService.swift; sourceTree = "<group>"; };
 		E1FFC8842809CE65006AFEA7 /* CustomHeightPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeightPreferenceKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				E13AA8F627FDDFC800EDADDE /* SearchBar.swift */,
+				E1F9BCC22815AE67004CCB0D /* WeatherDataService.swift */,
 				E1D7246427FDD79C00CBA26B /* NetworkingManager.swift */,
 				E1FFC8842809CE65006AFEA7 /* CustomHeightPreferenceKey.swift */,
 			);
@@ -281,6 +284,7 @@
 				E1E3052028089DB5009B6634 /* WeatherScreenHeader.swift in Sources */,
 				E123D18327FCA30D009DA9B2 /* MapViewModel.swift in Sources */,
 				E123D18527FCAB71009DA9B2 /* HomeView.swift in Sources */,
+				E1F9BCC32815AE67004CCB0D /* WeatherDataService.swift in Sources */,
 				E121321C280DD45100B0B086 /* NetworkingViewModel.swift in Sources */,
 				E1E3051E28089A94009B6634 /* WeekForecastRow.swift in Sources */,
 				E13AA8F727FDDFC800EDADDE /* SearchBar.swift in Sources */,
