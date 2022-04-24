@@ -9,14 +9,14 @@ import SwiftUI
 
 struct WeatherScreen: View {
     @State var offset: CGFloat = .zero
-    var topEdge: CGFloat 
+    var topEdge: CGFloat
     @State var heightRect: CGFloat = .zero
     @Binding var name: String
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
                 headerSection
-                    
+                
                 hourForecastSection
                 
                 weekForecastSection
@@ -121,40 +121,31 @@ extension WeatherScreen {
             WeatherScreenHeader(imageSystemName: "calendar", headerText: "Прогноз на 10 дн")
         }
     }
-    private var weatherInfoSquarePreference: some View {
-        WeatherRectangleView(isSquare: true) {
-            GeometryReader { geo in
-                PressureView()
-//                    .padding(4) // only for pressure
-                    .preference(key: CustomHeightPreferenceKey.self, value: geo.size.width - 40) // 40 is header height
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }.frame(height: heightRect)
-        } label: {
-            WeatherScreenHeader(imageSystemName: "sun.max", headerText: "УФ-Индекс")
-        }
-        .onPreferenceChange(CustomHeightPreferenceKey.self) { self.heightRect = $0 }
-    }
-    private var weatherInfoSquare: some View {
-        WeatherRectangleView(isSquare: true) {
-            RainFallView()
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading) // .leading for all but WindView
-                .frame(height: heightRect)
-            
-        } label: {
-            WeatherScreenHeader(imageSystemName: "sun.max", headerText: "УФ-Индекс")
-        }
-    }
     private var gridOfWeatherInfoSquares: some View {
         LazyVGrid(columns: [
             GridItem(.flexible(), spacing: 8),
             GridItem(.flexible())
         ], alignment: .center, spacing: 8) {
-            ForEach(0..<8) { item in
-                if item == 0 {
-                    weatherInfoSquarePreference
-                } else {
-                    weatherInfoSquare
+            ForEach(WeatherSquareInfo.allCases) { item in
+                WeatherRectangleView(isSquare: true) {
+                    if item == .UVIndex {
+                        GeometryReader { geo in
+                            item.view
+                                .preference(key: CustomHeightPreferenceKey.self, value: geo.size.width - 40) // 40 is header height
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                        }
+                        .frame(height: heightRect)
+                        .onPreferenceChange(CustomHeightPreferenceKey.self) { self.heightRect = $0 }
+                    } else {
+                        item.view
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading) // .leading for all but WindView
+                            .frame(height: heightRect)
+                    }
+                } label: {
+                    WeatherScreenHeader(imageSystemName: item.imageName, headerText: item.name)
                 }
+                
+                
             }
         }
         .padding(.bottom, 50)
