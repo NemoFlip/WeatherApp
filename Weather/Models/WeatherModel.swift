@@ -11,6 +11,7 @@ import SwiftUI
 struct WeatherModel: Codable {
     let lat, lon: Double
     let timezone: String
+    let timezone_offset: Int
     let current: Current
     let hourly: [Current]
     let daily: [Daily]
@@ -141,7 +142,7 @@ struct Daily: Codable {
 //    let clouds: Int
 //    let pop: Double
 //    let rain: Double?
-//    let uvi: Double
+    let uvi: Double
 //    let snow: Double?
     
     enum CodingKeys: String, CodingKey {
@@ -155,6 +156,7 @@ struct Daily: Codable {
 //        case windDeg = "wind_deg"
 //        case windGust = "wind_gust"
         case weather
+        case uvi
 //        , clouds, pop, rain, uvi, snow
     }
 }

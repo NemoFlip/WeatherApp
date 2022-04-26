@@ -8,29 +8,60 @@
 import SwiftUI
 import CoreLocation
 struct UVIndexView: View {
-    //    @EnvironmentObject private var networkingVM: NetworkingViewModel
+    @EnvironmentObject private var networkingVM: NetworkingViewModel
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("0")
+            Text("\(Int(round(networkingVM.weatherModel?.current.uvi ?? 0)))")
                 .bigInfoTextSquare()
-            Text("Low")
+            Text(getUVScale(uvi: networkingVM.weatherModel?.current.uvi))
                 .subTextSquare()
             Spacer()
-            Text("Low for the rest of the day.")
+            Text("\(getUVScale(uvi: Double(getMidValueOfUVI()))) is max for the rest of the day.")
                 .smallInfoTextSquare()
         }
+    }
+    func getUVScale(uvi: Double?) -> String {
+        let uvi = Int(round(uvi ?? 0))
+        switch uvi {
+        case 0...2:
+            return "Low"
+        case 3...5:
+            return "Medium"
+        case 6, 7:
+            return "High"
+        default:
+            return "Very High"
+        }
+    }
+    func getMidValueOfUVI() -> Int {
+        var midValue = 0.0
+        for i in 0..<12 {
+            print(networkingVM.weatherModel?.hourly[i].uvi)
+            midValue += networkingVM.weatherModel?.hourly[i].uvi ?? 0
+        }
+        let res = Int(round(midValue)) / 12
+        print(res)
+        return res
     }
 }
 
 struct SunriseView: View {
+    @EnvironmentObject private var networkingVM: NetworkingViewModel
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("04:31")
+            Text(getDateStringFromUTC(time: networkingVM.weatherModel?.current.sunrise ?? 0, timeZoneOffset: networkingVM.weatherModel?.timezone_offset ?? 0))
                 .bigInfoTextSquare()
             Spacer()
-            Text("Sunset: 18:57")
+            Text("Sunset: \(getDateStringFromUTC(time: networkingVM.weatherModel?.current.sunset ?? 0, timeZoneOffset: networkingVM.weatherModel?.timezone_offset ?? 0))")
                 .smallInfoTextSquare()
         }
+    }
+    func getDateStringFromUTC(time: Int, timeZoneOffset: Int) -> String {
+        let date = Date(timeIntervalSince1970: TimeInterval(time))
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .short
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: timeZoneOffset)
+        return dateFormatter.string(from: date)
     }
 }
 
@@ -49,14 +80,14 @@ struct WindView: View {
                     .secondaryText()
                     .frame(maxHeight: .infinity, alignment: .bottom)
             }
-                
+            
             ArrowShape()
                 .stroke(.white, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
                 .scaledToFit()
             ZStack {
                 Circle().fill(.ultraThinMaterial)
                     .shadow(radius: 1)
-                    
+                
                 VStack {
                     Text("3")
                         .subTextSquare()
@@ -124,7 +155,7 @@ struct PressureView: View {
                     Circle().trim(from: 0.95, to: 1).stroke(Color.white.opacity(0.5), style: StrokeStyle(lineWidth: 9)).foregroundStyle(.blue) // change first param in trim to controll filling
                         .rotationEffect(.degrees(46))
                 }
-                
+            
             HStack(spacing: 15) {
                 Text("Low")
                 Text("High")

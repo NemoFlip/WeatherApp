@@ -42,7 +42,6 @@ struct WeatherScreen: View {
                     return Color.clear
                 }
             }
-            
         }
         .environmentObject(networkingVM)
         .foregroundColor(.white)

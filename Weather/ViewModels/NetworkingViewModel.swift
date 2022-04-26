@@ -20,8 +20,8 @@ class NetworkingViewModel: ObservableObject {
     func addSubscribers(coords: CLLocationCoordinate2D, lang: String) {
         dataService.getWeatherData(coords: coords, lang: lang)
         self.dataService.$weatherModel.sink { [weak self] returnedModel in
-            print("SUCCESS")
-            self?.weatherModel = returnedModel
+                print("SUCCESS")
+                self?.weatherModel = returnedModel
         }.store(in: &self.cancellables)
     }
 }
