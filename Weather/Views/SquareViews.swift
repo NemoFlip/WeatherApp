@@ -11,17 +11,17 @@ struct UVIndexView: View {
     @EnvironmentObject private var networkingVM: NetworkingViewModel
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("\(Int(round(networkingVM.weatherModel?.current.uvi ?? 0)))")
+            Text("\(Int(ceil(networkingVM.weatherModel?.current.uvi ?? 0)))")
                 .bigInfoTextSquare()
-            Text(getUVScale(uvi: networkingVM.weatherModel?.current.uvi))
+            Text(getUVScale())
                 .subTextSquare()
             Spacer()
-            Text("\(getUVScale(uvi: Double(getMidValueOfUVI()))) is max for the rest of the day.")
+            Text("\(getUVScale()) for the rest of the day.")
                 .smallInfoTextSquare()
         }
     }
-    func getUVScale(uvi: Double?) -> String {
-        let uvi = Int(round(uvi ?? 0))
+    func getUVScale() -> String {
+        let uvi = Int(round(networkingVM.weatherModel?.current.uvi ?? 0))
         switch uvi {
         case 0...2:
             return "Low"
@@ -33,30 +33,21 @@ struct UVIndexView: View {
             return "Very High"
         }
     }
-    func getMidValueOfUVI() -> Int {
-        var midValue = 0.0
-        for i in 0..<12 {
-            print(networkingVM.weatherModel?.hourly[i].uvi)
-            midValue += networkingVM.weatherModel?.hourly[i].uvi ?? 0
-        }
-        let res = Int(round(midValue)) / 12
-        print(res)
-        return res
-    }
 }
 
 struct SunriseView: View {
     @EnvironmentObject private var networkingVM: NetworkingViewModel
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(getDateStringFromUTC(time: networkingVM.weatherModel?.current.sunrise ?? 0, timeZoneOffset: networkingVM.weatherModel?.timezone_offset ?? 0))
+            Text(getDateStringFromUTC(time: networkingVM.weatherModel?.daily[1].sunrise ?? 0))
                 .bigInfoTextSquare()
             Spacer()
-            Text("Sunset: \(getDateStringFromUTC(time: networkingVM.weatherModel?.current.sunset ?? 0, timeZoneOffset: networkingVM.weatherModel?.timezone_offset ?? 0))")
+            Text("Sunset: \(getDateStringFromUTC(time: networkingVM.weatherModel?.current.sunset ?? 0))")
                 .smallInfoTextSquare()
         }
     }
-    func getDateStringFromUTC(time: Int, timeZoneOffset: Int) -> String {
+    func getDateStringFromUTC(time: Int) -> String {
+        let timeZoneOffset = networkingVM.weatherModel?.timezone_offset ?? 0
         let date = Date(timeIntervalSince1970: TimeInterval(time))
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .short
@@ -66,6 +57,7 @@ struct SunriseView: View {
 }
 
 struct WindView: View {
+    @EnvironmentObject private var networkingVM: NetworkingViewModel
     var body: some View {
         ZStack {
             ZStack {
@@ -84,12 +76,12 @@ struct WindView: View {
             ArrowShape()
                 .stroke(.white, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
                 .scaledToFit()
+                .rotationEffect(.degrees(Double(networkingVM.weatherModel?.current.windDeg  ?? 0) + 90))
             ZStack {
                 Circle().fill(.ultraThinMaterial)
                     .shadow(radius: 1)
-                
                 VStack {
-                    Text("3")
+                    Text("\(Int(round(networkingVM.weatherModel?.current.windSpeed ?? 0)))")
                         .subTextSquare()
                     Text("m/s")
                         .smallInfoTextSquare()

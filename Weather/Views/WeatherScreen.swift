@@ -74,14 +74,14 @@ extension WeatherScreen {
             Text(name.localizedCapitalized)
                 .font(.system(size: 35, weight: .medium))
             HStack {
-                Text("12º")
+                Text("\(Int(networkingVM.weatherModel?.current.temp ?? 0))º")
                 Text("|")
                 Text("Переменная облачность")
             }
             .opacity(-offset / 20 < 3 ? 0 : 1 - getTitleOpactiy())
             .font(.system(size: 20, weight: .medium))
             
-            Text("12º")
+            Text("\(Int(networkingVM.weatherModel?.current.temp ?? 0))º")
                 .opacity(getTitleOpactiy())
                 .font(.system(size: 80, weight: .thin))
             Group {
