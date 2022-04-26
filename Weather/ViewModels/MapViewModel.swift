@@ -14,6 +14,11 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var trackLocations: [SearchModel] = [] // when searching location
     @Published var noLocation = false
     @AppStorage(UserLocationKeys.userLocations) var userLocations: [SearchModel] = [] // all user locatons
+    func getLanguage() -> String {
+        let lang = Locale.preferredLanguages[0].components(separatedBy: "-").first ?? "en"
+        print(lang)
+        return lang
+    }
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         print(userLocations)
         if manager.authorizationStatus != .denied {

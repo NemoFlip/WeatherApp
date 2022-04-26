@@ -8,7 +8,6 @@
 import SwiftUI
 import CoreLocation
 struct UVIndexView: View {
-    @StateObject private var vm = NetworkingViewModel()
     //    @EnvironmentObject private var networkingVM: NetworkingViewModel
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -19,10 +18,6 @@ struct UVIndexView: View {
             Spacer()
             Text("Low for the rest of the day.")
                 .smallInfoTextSquare()
-        }
-        .onAppear {
-            vm.addSubscribers(coords: CLLocationCoordinate2D(latitude: 55.751244, longitude: 37.618423), lang: "en")
-            
         }
     }
 }

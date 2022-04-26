@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
-
+import CoreLocation
 struct WeatherScreen: View {
-    @State var offset: CGFloat = .zero
+    @StateObject var networkingVM: NetworkingViewModel
     var topEdge: CGFloat
-    @State var heightRect: CGFloat = .zero
     @Binding var name: String
+    @State var offset: CGFloat = .zero
+    @State var heightRect: CGFloat = .zero
+    init(coords: CLLocationCoordinate2D, lang: String, topEdge: CGFloat, name: Binding<String>) {
+        self.topEdge = topEdge
+        self._name = name
+        _networkingVM = StateObject(wrappedValue: NetworkingViewModel(coords: coords, lang: lang))
+        print("Weather Screen Initialized")
+    }
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
@@ -37,6 +44,7 @@ struct WeatherScreen: View {
             }
             
         }
+        .environmentObject(networkingVM)
         .foregroundColor(.white)
         .background(Color.blue.ignoresSafeArea())
     }
@@ -57,7 +65,7 @@ struct WeatherScreen: View {
 }
 struct WeatherScreen_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherScreen(topEdge: .zero, name: .constant(""))
+        WeatherScreen(coords: CLLocationCoordinate2D(latitude: 0, longitude: 0), lang: "", topEdge: .zero, name: .constant(""))
     }
 }
 
