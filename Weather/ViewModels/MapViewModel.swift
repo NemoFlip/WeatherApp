@@ -16,7 +16,6 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @AppStorage(UserLocationKeys.userLocations) var userLocations: [SearchModel] = [] // all user locatons
     func getLanguage() -> String {
         let lang = Locale.preferredLanguages[0].components(separatedBy: "-").first ?? "en"
-        print(lang)
         return lang
     }
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

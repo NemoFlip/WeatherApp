@@ -17,7 +17,6 @@ struct WeatherScreen: View {
         self.topEdge = topEdge
         self._name = name
         _networkingVM = StateObject(wrappedValue: NetworkingViewModel(coords: coords, lang: lang))
-        print("Weather Screen Initialized")
     }
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -76,7 +75,7 @@ extension WeatherScreen {
             HStack {
                 Text("\(Int(networkingVM.weatherModel?.current.temp ?? 0))º")
                 Text("|")
-                Text("Переменная облачность")
+                Text(networkingVM.weatherModel?.current.weather[0].weatherDescription.firstCapitalized ?? "")
             }
             .opacity(-offset / 20 < 3 ? 0 : 1 - getTitleOpactiy())
             .font(.system(size: 20, weight: .medium))
@@ -85,12 +84,12 @@ extension WeatherScreen {
                 .opacity(getTitleOpactiy())
                 .font(.system(size: 80, weight: .thin))
             Group {
-                Text("Переменная облачность")
-                Text("Макс.: 15º, мин.: 2º")
+                Text(networkingVM.weatherModel?.current.weather[0].weatherDescription.firstCapitalized ?? "")
+                Text("H: \(Int(networkingVM.weatherModel?.daily[0].temp.max ?? 0))º  L: \(Int(networkingVM.weatherModel?.daily[0].temp.min ?? -1))º")
                     .padding(.bottom, 30)
             }
             .opacity(getTitleOpactiy())
-            .font(.system(size: 15, weight: .medium))
+            .font(.system(size: 18))
             
         }
         .offset(y: -offset) // for staing on top

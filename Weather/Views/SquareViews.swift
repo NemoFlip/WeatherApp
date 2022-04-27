@@ -46,12 +46,23 @@ struct SunriseView: View {
                 .smallInfoTextSquare()
         }
     }
+    func getRoundOfSecondsAmount(date: String) -> Int {
+        guard let seconds = Int(date[date.index(date.endIndex, offsetBy: -2)...]) else { return 0 }
+        if seconds >= 40 {
+            return 60 - seconds
+        }
+        return 0
+    }
     func getDateStringFromUTC(time: Int) -> String {
         let timeZoneOffset = networkingVM.weatherModel?.timezone_offset ?? 0
-        let date = Date(timeIntervalSince1970: TimeInterval(time))
+        var date = Date(timeIntervalSince1970: TimeInterval(time))
+        
         let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = .short
+        dateFormatter.timeStyle = .medium
         dateFormatter.timeZone = TimeZone(secondsFromGMT: timeZoneOffset)
+        date.addTimeInterval(TimeInterval(getRoundOfSecondsAmount(date: dateFormatter.string(from: date))))
+        
+        dateFormatter.timeStyle = .short
         return dateFormatter.string(from: date)
     }
 }
@@ -76,7 +87,7 @@ struct WindView: View {
             ArrowShape()
                 .stroke(.white, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
                 .scaledToFit()
-                .rotationEffect(.degrees(Double(networkingVM.weatherModel?.current.windDeg  ?? 0) + 90))
+                .rotationEffect(.degrees(-Double(networkingVM.weatherModel?.current.windDeg  ?? 0) + 90))
             ZStack {
                 Circle().fill(.ultraThinMaterial)
                     .shadow(radius: 1)
