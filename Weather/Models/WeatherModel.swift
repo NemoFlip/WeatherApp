@@ -141,7 +141,7 @@ struct Daily: Codable {
     let weather: [Weather]
 //    let clouds: Int
 //    let pop: Double
-//    let rain: Double?
+    let rain: Double?
     let uvi: Double
 //    let snow: Double?
     
@@ -149,6 +149,7 @@ struct Daily: Codable {
         case dt, sunrise, sunset, moonrise, moonset
 //        case moonPhase = "moon_phase"
         case temp
+        case rain
 //        case feelsLike = "feels_like"
 //        case pressure, humidity
 //        case dewPoint = "dew_point"

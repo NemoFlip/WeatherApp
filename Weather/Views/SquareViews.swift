@@ -11,7 +11,7 @@ struct UVIndexView: View {
     @EnvironmentObject private var networkingVM: NetworkingViewModel
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("\(Int(ceil(networkingVM.weatherModel?.current.uvi ?? 0)))")
+            Text("\(Int(round(networkingVM.weatherModel?.current.uvi ?? 0)))")
                 .bigInfoTextSquare()
             Text(getUVScale())
                 .subTextSquare()
@@ -104,15 +104,17 @@ struct WindView: View {
 }
 
 struct RainFallView: View {
+    @EnvironmentObject private var networkingVM: NetworkingViewModel
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("6 mm")
+            Text("\(Int(ceil(networkingVM.weatherModel?.current.rain?.the1H ?? 0))) mm")
                 .bigInfoTextSquare()
-            Text("in last 6h")
+            Text("in last 1h")
                 .subTextSquare()
             Spacer()
-            Text("1 mm expected in next 24h")
+            Text("\(Int(ceil(networkingVM.weatherModel?.daily[0].rain ?? 0))) mm expected in next 24h")
                 .smallInfoTextSquare()
+            
         }
     }
 }
