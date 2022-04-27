@@ -175,13 +175,17 @@ struct VisibilityView: View {
     }
 }
 struct PressureView: View {
+    @EnvironmentObject private var networkingVM: NetworkingViewModel
     var body: some View {
         ZStack {
             Circle()
-                .trim(from: 0.252, to: 1).stroke(Color.white.opacity(0.5), style: StrokeStyle(lineWidth: 9, lineCap: .butt, lineJoin: .miter, dash: [2, 5]))
+                .trim(from: 0.252, to: 1)
+                .stroke(Color.white.opacity(0.5), style: StrokeStyle(lineWidth: 9, lineCap: .butt, lineJoin: .miter, dash: [2, 5]))
                 .rotationEffect(.degrees(46))
                 .overlay {
-                    Circle().trim(from: 0.95, to: 1).stroke(Color.white.opacity(0.5), style: StrokeStyle(lineWidth: 9)).foregroundStyle(.blue) // change first param in trim to controll filling
+                    Circle()
+                        .trim(from: 0.1 * CGFloat((Int(round( Double((networkingVM.weatherModel?.current.pressure ?? 0)) / 1.333 )) / 100)), to: 0.1 * CGFloat((Int(round( Double((networkingVM.weatherModel?.current.pressure ?? 0)) / 1.333 )) / 100)) + 0.001) // change first param in trim to controll filling
+                        .stroke(Color.white.opacity(0.8), style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
                         .rotationEffect(.degrees(46))
                 }
             
@@ -193,7 +197,7 @@ struct PressureView: View {
             .frame(maxHeight: .infinity, alignment: .bottom)
             VStack(spacing: 0) {
                 Image(systemName: "arrow.down").subTextSquare()
-                Text("765").subTextSquare()
+                Text("\(Int(round( Double((networkingVM.weatherModel?.current.pressure ?? 0)) / 1.333 )))").subTextSquare()
                 Text("mm Hg").smallInfoTextSquare()
             }.padding(.bottom)
         }.padding(.top, 5)
