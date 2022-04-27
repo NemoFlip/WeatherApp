@@ -119,9 +119,10 @@ struct RainFallView: View {
     }
 }
 struct FeelsLikeView: View {
+    @EnvironmentObject private var networkingVM: NetworkingViewModel
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("6º")
+            Text("\(Int(round(networkingVM.weatherModel?.current.feelsLike ?? 0)))º")
                 .bigInfoTextSquare()
             Spacer()
             Text("Wind is making it feel cooler")
@@ -130,23 +131,46 @@ struct FeelsLikeView: View {
     }
 }
 struct HumidityView: View {
+    @EnvironmentObject private var networkingVM: NetworkingViewModel
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("44%")
+            Text("\(networkingVM.weatherModel?.current.humidity ?? 0)%")
                 .bigInfoTextSquare()
             Spacer()
-            Text("The dew point is -3º right now")
+            Text("The dew point is \(Int(round(networkingVM.weatherModel?.current.dewPoint ?? 0)))º right now")
                 .smallInfoTextSquare()
         }
     }
 }
 struct VisibilityView: View {
+    @EnvironmentObject private var networkingVM: NetworkingViewModel
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("16 km")
+            Text("\((networkingVM.weatherModel?.current.visibility ?? 0) / 1000) km")
                 .bigInfoTextSquare()
             Spacer()
             Text("It's perfectly clear right now")
+        }
+    }
+    func getVisibilityDescription() -> String {
+        let visibility = networkingVM.weatherModel?.current.visibility ?? 0
+        switch visibility {
+        case ...200:
+            return "thick fog"
+        case 201...500:
+            return "moderate fog"
+        case 501...1000:
+            return "light fog"
+        case 1001...2000:
+            return "thin fog"
+        case 2001...4000:
+            return "haze"
+        case 4001...7000:
+            return "light haze"
+        case 7001...8500:
+            return "clear"
+        default:
+            return "perfectly clear"
         }
     }
 }
