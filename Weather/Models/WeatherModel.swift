@@ -18,7 +18,11 @@ struct WeatherModel: Codable {
 }
 
 // MARK: - Current
-struct Current: Codable {
+struct Current: Codable, Hashable {
+    static func == (lhs: Current, rhs: Current) -> Bool {
+        lhs.dt == rhs.dt
+    }
+    
     let dt: Int
     let sunrise, sunset: Int?
     let temp, feelsLike: Double
@@ -47,7 +51,7 @@ struct Current: Codable {
 }
 
 // MARK: - Rain
-struct Rain: Codable {
+struct Rain: Codable, Hashable {
     let the1H: Double
     
     enum CodingKeys: String, CodingKey {

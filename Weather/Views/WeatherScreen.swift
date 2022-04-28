@@ -100,19 +100,14 @@ extension WeatherScreen {
         WeatherRectangleView(isSquare: false) {
             ScrollView(.horizontal ,showsIndicators: false) {
                 HStack(spacing: 15) {
-                    ForEach(0..<27) {item in
-                        VStack(spacing: 10) {
-                            Text("Now")
-                            Image(systemName: "cloud.fill")
-                            Text("11º")
-                        }
+                    ForEach(networkingVM.weatherModel?.hourly ?? [WeatherScreen.dev.hourlyModel], id: \.self) { hourlyModel in
+                        HourlyForecastRow(hourlyModel: hourlyModel)
                     }
                 }
             }
             
         } label: {
-            Text("Ожидается ясная погода около 19:00")
-                .font(.subheadline)
+            WeatherScreenHeader(imageSystemName: "clock", headerText: "hourly forecast")
             
         }
     }
@@ -124,7 +119,7 @@ extension WeatherScreen {
                 }
             }
         } label: {
-            WeatherScreenHeader(imageSystemName: "calendar", headerText: "Прогноз на 10 дн")
+            WeatherScreenHeader(imageSystemName: "calendar", headerText: "8-day forecast")
         }
     }
     private var gridOfWeatherInfoSquares: some View {
