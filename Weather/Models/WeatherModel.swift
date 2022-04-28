@@ -56,7 +56,7 @@ struct Rain: Codable {
 }
 
 // MARK: - Weather
-struct Weather: Codable {
+struct Weather: Codable, Hashable {
     let id: Int
     let main: String
     let weatherDescription: String
@@ -128,7 +128,10 @@ enum Icon: String, Codable {
 }
 
 // MARK: - Daily
-struct Daily: Codable {
+struct Daily: Codable, Hashable {
+    static func == (lhs: Daily, rhs: Daily) -> Bool {
+        lhs.dt == rhs.dt
+    }
     let dt, sunrise, sunset, moonrise: Int
     let moonset: Int
 //    let moonPhase: Double
@@ -168,7 +171,7 @@ struct Daily: Codable {
 //}
 
 // MARK: - Temp
-struct Temp: Codable {
+struct Temp: Codable, Hashable {
     let day, min, max, night: Double
     let eve, morn: Double
 }

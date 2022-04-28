@@ -119,8 +119,8 @@ extension WeatherScreen {
     private var weekForecastSection: some View {
         WeatherRectangleView(isSquare: false) {
             VStack(alignment: .leading) {
-                ForEach(0..<11) { item in
-                    WeekForecastRow(item: item)
+                ForEach(0..<(networkingVM.weatherModel?.daily.count ?? 0), id: \.self) { item in
+                    WeekForecastRow(item: item, model: networkingVM.weatherModel?.daily[item] ?? Daily(dt: 0, sunrise: 0, sunset: 0, moonrise: 0, moonset: 0, temp: Temp(day: 0, min: 0, max: 0, night: 0, eve: 0, morn: 0), weather: [Weather(id: 0, main: "", weatherDescription: "", icon: Icon(rawValue: "01d")!)], rain: 0, uvi: 0), timeZoneOffset: networkingVM.weatherModel?.timezone_offset ?? 0)
                 }
             }
         } label: {
