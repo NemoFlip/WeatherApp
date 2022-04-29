@@ -99,9 +99,9 @@ extension WeatherScreen {
     private var hourForecastSection: some View {
         WeatherRectangleView(isSquare: false) {
             ScrollView(.horizontal ,showsIndicators: false) {
-                HStack(spacing: 15) {
+                HStack(spacing: 30) {
                     ForEach(networkingVM.weatherModel?.hourly ?? [WeatherScreen.dev.hourlyModel], id: \.self) { hourlyModel in
-                        HourlyForecastRow(hourlyModel: hourlyModel)
+                        HourlyForecastRow(hourlyModel: hourlyModel, timeOffset: networkingVM.weatherModel?.timezone_offset ?? 0)
                     }
                 }
             }

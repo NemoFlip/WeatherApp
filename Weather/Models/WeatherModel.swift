@@ -93,11 +93,11 @@ struct Weather: Codable, Hashable {
         case .the01N:
             return ("moon.stars.fill", .white, .white)
         case .the02N, .the03N, .the04N:
-            return ("cloud.moon.fill", .white, .black)
+            return ("cloud.moon.fill", .white, .blue)
         case .the09N, .the10N:
-            return ("cloud.moon.rain.fill", .white, .black)
+            return ("cloud.moon.rain.fill", .white, .blue)
         case .the11N:
-            return ("cloud.moon.bolt.fill", .white, .black)
+            return ("cloud.moon.bolt.fill", .white, .blue)
         }
     }
 }
