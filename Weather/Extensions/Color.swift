@@ -9,9 +9,13 @@ import Foundation
 import SwiftUI
 extension Color {
     static let launchTheme = LaunchTheme()
+    static let theme = MainTheme()
 }
 struct LaunchTheme {
     let background = Color("LaunchBackgroundColor")
     let accent = Color("LaunchAccentColor")
 }
 
+struct MainTheme {
+    let lightBlue = Color("LightBlue")
+}

@@ -17,14 +17,27 @@ struct WeekForecastRow: View {
                 Text(getDayOfWeek())
                     .subTextSquare()
                     .frame(maxWidth: 110, alignment: .leading)
-                Image(systemName: model.weather[0].getIconName().name)
-                    .foregroundStyle(model.weather[0].getIconName().primaryColor, model.weather[0].getIconName().secondaryColor)
-                Spacer()
-                Text("\(Int(round(model.temp.min)))º")
-                    .secondaryText()
-                    .subTextSquare()
-                Text("\(Int(round(model.temp.max)))º")
-                    .subTextSquare()
+
+                VStack {
+                    Image(systemName: model.weather[0].getIconName().name)
+                        .foregroundStyle(model.weather[0].getIconName().primaryColor, model.weather[0].getIconName().secondaryColor, Color.theme.lightBlue)
+                        .font(.title3)
+                    if let rainChance = model.pop, rainChance >= 0.1 {
+                        Text("\(Int(rainChance * 100))%")
+                            .foregroundColor(.theme.lightBlue)
+                            .font(.system(size: 14))
+                    }
+                }
+                Spacer(minLength: 0)
+    
+                HStack(spacing: 20) {
+                    Text("\(Int(round(model.temp.min)))º")
+                        .secondaryText()
+                        .subTextSquare()
+                
+                    Text("\(Int(round(model.temp.max)))º")
+                        .subTextSquare()
+                }
             }
             if item != 7 {
                 Divider()

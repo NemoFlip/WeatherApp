@@ -183,8 +183,9 @@ struct PressureView: View {
                 .stroke(Color.white.opacity(0.5), style: StrokeStyle(lineWidth: 9, lineCap: .butt, lineJoin: .miter, dash: [2, 5]))
                 .rotationEffect(.degrees(46))
                 .overlay {
+                    let pressureValue = CGFloat((Int(round( Double((networkingVM.weatherModel?.current.pressure ?? 0)) / 1.333 )) / 100))
                     Circle()
-                        .trim(from: 0.1 * CGFloat((Int(round( Double((networkingVM.weatherModel?.current.pressure ?? 0)) / 1.333 )) / 100)), to: 0.1 * CGFloat((Int(round( Double((networkingVM.weatherModel?.current.pressure ?? 0)) / 1.333 )) / 100)) + 0.001) // change first param in trim to controll filling
+                        .trim(from: 0.1 * pressureValue, to: 0.1 * pressureValue + 0.001) // change first param in trim to controll filling
                         .stroke(Color.white.opacity(0.8), style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
                         .rotationEffect(.degrees(46))
                 }

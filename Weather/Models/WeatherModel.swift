@@ -147,7 +147,7 @@ struct Daily: Codable, Hashable {
 //    let windGust: Double
     let weather: [Weather]
 //    let clouds: Int
-//    let pop: Double
+    let pop: Double
     let rain: Double?
     let uvi: Double
 //    let snow: Double?
@@ -165,6 +165,7 @@ struct Daily: Codable, Hashable {
 //        case windGust = "wind_gust"
         case weather
         case uvi
+        case pop
 //        , clouds, pop, rain, uvi, snow
     }
 }
