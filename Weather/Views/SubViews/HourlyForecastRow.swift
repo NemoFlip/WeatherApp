@@ -13,10 +13,10 @@ struct HourlyForecastRow: View {
     var body: some View {
         VStack(spacing: 10) {
             Group {
-                Text("\(getHour())")
+                Text("\(checkNowTime() ? "Now" : getDateFromUNIX(timeOffset: timeOffset, currentDate: hourlyModel.dt ,dateFormat: "h"))")
                     .fontWeight(.medium)
                 +
-                Text("\(getPartOfDay())")
+                Text("\(checkNowTime() ? "" : getDateFromUNIX(timeOffset: timeOffset, currentDate: hourlyModel.dt ,dateFormat: "a"))")
                     .fontWeight(.medium)
                     .font(.footnote)
             }
@@ -26,21 +26,8 @@ struct HourlyForecastRow: View {
             Text("\(Int(round(hourlyModel.temp)))º")
         }
     }
-    func getHour() -> String {
-        let date = Date(timeIntervalSince1970: TimeInterval(hourlyModel.dt))
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: timeOffset)
-        dateFormatter.dateFormat = "h"
-        return dateFormatter.string(from: date)
-    }
-    func getPartOfDay() -> String {
-        let date = Date(timeIntervalSince1970: TimeInterval(hourlyModel.dt))
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: timeOffset)
-        dateFormatter.dateFormat = "a"
-        return dateFormatter.string(from: date)
+    func checkNowTime() -> Bool {
+        getDateFromUNIX(timeOffset: timeOffset, currentDate: hourlyModel.dt ,dateFormat: "h") == getDateFromUNIX(timeOffset: timeOffset, currentDate: Int(Date().timeIntervalSince1970), dateFormat: "h")
     }
 }
 

@@ -14,7 +14,7 @@ struct WeekForecastRow: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack(spacing: 35) {
-                Text(getDayOfWeek())
+                Text(item == 0 ? "Today" : getDateFromUNIX(timeOffset: timeZoneOffset, currentDate: model.dt, dateFormat: "EEEE"))
                     .subTextSquare()
                     .frame(maxWidth: 110, alignment: .leading)
 
@@ -43,16 +43,6 @@ struct WeekForecastRow: View {
                 Divider()
             }
         }
-    }
-    func getDayOfWeek() -> String {
-        let dateOfWeek = Date(timeIntervalSince1970: TimeInterval(model.dt))
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: timeZoneOffset)
-        if item == 0 {
-            return "Today"
-        }
-        return dateFormatter.string(from: dateOfWeek)
     }
 }
 
