@@ -20,9 +20,16 @@ struct HourlyForecastRow: View {
                     .fontWeight(.medium)
                     .font(.footnote)
             }
-            Image(systemName: hourlyModel.weather[0].getIconName().name)
-                .foregroundStyle(hourlyModel.weather[0].getIconName().primaryColor, hourlyModel.weather[0].getIconName().secondaryColor, Color.theme.lightBlue)
-                .font(.title3)
+            VStack(spacing: 0) {
+                Image(systemName: hourlyModel.weather[0].getIconName().name)
+                    .foregroundStyle(hourlyModel.weather[0].getIconName().primaryColor, hourlyModel.weather[0].getIconName().secondaryColor, Color.theme.lightBlue)
+                    .font(.title3)
+                if let rainChance = hourlyModel.pop, rainChance >= 0.1 {
+                    Text("\(Int(rainChance * 100))%")
+                        .foregroundColor(.theme.lightBlue)
+                        .font(.system(size: 14))
+                }
+            }
             Text("\(Int(round(hourlyModel.temp)))º")
         }
     }
