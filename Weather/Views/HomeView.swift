@@ -9,6 +9,7 @@ import SwiftUI
 import MapKit
 import CoreLocation
 struct HomeView: View {
+    @State private var showLocationPicker = false
     @StateObject var mapVM = MapViewModel()
     @State var result = [SearchModel]()
     var body: some View {
@@ -58,13 +59,21 @@ extension HomeView {
             HStack {
                 Spacer(minLength: 0)
                 Button {
-                    
+                    self.showLocationPicker.toggle()
                 } label: {
                     Image(systemName: "list.bullet")
                         .font(.title2).padding(.trailing)
                         .foregroundColor(.white)
                 }
-            }.padding(8).background(Color.blue.overlay(.ultraThinMaterial).ignoresSafeArea(.all, edges: .bottom))
+                .fullScreenCover(isPresented: $showLocationPicker) {
+                    
+                } content: {
+                    LocationPickerView(result: $result)
+                }
+
+            }
+            .padding(8)
+            .background(Color.blue.overlay(.ultraThinMaterial).ignoresSafeArea(.all, edges: .bottom))
 
                 
         }.frame(maxHeight: .infinity, alignment: .bottom)

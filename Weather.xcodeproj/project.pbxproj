@@ -35,6 +35,7 @@
 		E1F7A5C5281ADC1C0077E27B /* HourlyForecastRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F7A5C4281ADC1C0077E27B /* HourlyForecastRow.swift */; };
 		E1F9BCC12815790F004CCB0D /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9BCC02815790F004CCB0D /* WeatherModel.swift */; };
 		E1F9BCC32815AE67004CCB0D /* WeatherDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9BCC22815AE67004CCB0D /* WeatherDataService.swift */; };
+		E1FCA2BC281EACA300130AED /* LocationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FCA2BB281EACA300130AED /* LocationPickerView.swift */; };
 		E1FFC8852809CE65006AFEA7 /* CustomHeightPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8842809CE65006AFEA7 /* CustomHeightPreferenceKey.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		E1F7A5C4281ADC1C0077E27B /* HourlyForecastRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastRow.swift; sourceTree = "<group>"; };
 		E1F9BCC02815790F004CCB0D /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		E1F9BCC22815AE67004CCB0D /* WeatherDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataService.swift; sourceTree = "<group>"; };
+		E1FCA2BB281EACA300130AED /* LocationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerView.swift; sourceTree = "<group>"; };
 		E1FFC8842809CE65006AFEA7 /* CustomHeightPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeightPreferenceKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +104,7 @@
 				E1E12D692807259B00C95588 /* WeatherScreen.swift */,
 				E123D18427FCAB71009DA9B2 /* HomeView.swift */,
 				E1213219280DD37300B0B086 /* SquareViews.swift */,
+				E1FCA2BB281EACA300130AED /* LocationPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				E1F23C2928198BC50058DFCD /* String.swift in Sources */,
 				E1E3051E28089A94009B6634 /* WeekForecastRow.swift in Sources */,
 				E13AA8F727FDDFC800EDADDE /* SearchBar.swift in Sources */,
+				E1FCA2BC281EACA300130AED /* LocationPickerView.swift in Sources */,
 				E11E781428006E2A00D594D9 /* SearchBarView.swift in Sources */,
 				E1D7246527FDD79C00CBA26B /* NetworkingManager.swift in Sources */,
 				E195E28127F8D0FB00380F43 /* WeatherApp.swift in Sources */,

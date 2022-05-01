@@ -11,7 +11,6 @@ import CoreLocation
 class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var locationManager = CLLocationManager()
     @Published var userLocation: CLLocation!
-    @Published var trackLocations: [SearchModel] = [] // when searching location
     @Published var noLocation = false
     @AppStorage(UserLocationKeys.userLocations) var userLocations: [SearchModel] = [] // all user locatons
     func getLanguage() -> String {

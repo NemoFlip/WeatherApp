@@ -18,11 +18,12 @@ struct SearchBarView: View {
             if !self.result.isEmpty {
                 searchListSection
             } else {
-                Spacer().frame(height: UIScreen.main.bounds.height / 2)
+                Spacer()
+//                    .frame(height: UIScreen.main.bounds.height / 2)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.horizontal, 25)
+//        .padding(.horizontal, 25)
     }
 }
 
@@ -31,15 +32,17 @@ extension SearchBarView {
         List(self.result, id: \.self) {place in
             VStack(alignment: .leading) {
                 Button {
-                    mapVM.userLocations.append(place)
-                    print(mapVM.trackLocations)
+                    if !mapVM.userLocations.contains(where: { $0.coordinates == place.coordinates }) {
+                        mapVM.userLocations.append(place)
+                    }
                     self.presentationMode.wrappedValue.dismiss()
+                    result = []
                 } label: {
                     Text(place.cityName)
                 }
             }
         }
         .listStyle(PlainListStyle())
-        .frame(height: UIScreen.main.bounds.height / 2)
+//        .frame(height: UIScreen.main.bounds.height / 2)
     }
 }
