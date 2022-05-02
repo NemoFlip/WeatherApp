@@ -73,8 +73,8 @@ extension HomeView {
 
             }
             .padding(8)
-            .background(Color.blue.overlay(.ultraThinMaterial).ignoresSafeArea(.all, edges: .bottom))
-
+//            .background(Color.blue.overlay(.ultraThinMaterial).ignoresSafeArea(.all, edges: .bottom))
+            .background(.ultraThinMaterial)
                 
         }.frame(maxHeight: .infinity, alignment: .bottom)
     }

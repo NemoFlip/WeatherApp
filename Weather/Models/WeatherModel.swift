@@ -100,6 +100,22 @@ struct Weather: Codable, Hashable {
             return ("cloud.moon.bolt.fill", .white, .blue)
         }
     }
+    func getBackColor() -> Color {
+        switch id {
+        case 200...400:
+            return .gray
+        case 500..<600:
+            return .init(uiColor: .lightGray)
+        case 600..<800:
+            return .gray.opacity(0.25)
+        case 800:
+            return .blue
+        case 801..<805:
+            return .gray.opacity(0.5)
+        default:
+            return .gray
+        }
+    }
 }
 
 enum Icon: String, Codable {

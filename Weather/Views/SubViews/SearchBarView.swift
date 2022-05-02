@@ -14,11 +14,11 @@ struct SearchBarView: View {
     var body: some View {
         VStack(spacing: 0) {
             SearchBar(result: $result)
-            Divider()
+//            Divider()
             if !self.result.isEmpty {
                 searchListSection
             } else {
-                Spacer()
+//                Spacer()
 //                    .frame(height: UIScreen.main.bounds.height / 2)
             }
         }

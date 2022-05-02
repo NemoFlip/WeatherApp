@@ -44,7 +44,7 @@ struct WeatherScreen: View {
         }
         .environmentObject(networkingVM)
         .foregroundColor(.white)
-        .background(Color.blue.ignoresSafeArea())
+        .background(networkingVM.backColor.ignoresSafeArea())
     }
     func getTitleOpactiy() -> CGFloat {
         let titleOffset = -getTitleOffset()

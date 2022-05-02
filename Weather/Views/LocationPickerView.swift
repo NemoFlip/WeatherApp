@@ -10,14 +10,16 @@ import SwiftUI
 struct LocationPickerView: View {
     @EnvironmentObject private var mapVM: MapViewModel
     @Binding var result: [SearchModel]
+    @State private var showList = false
     var body: some View {
         NavigationView {
+            ScrollView {
                 VStack {
-                    SearchBarView(result: $result)
                     ForEach(mapVM.userLocations, id: \.self) { location in
                         Text(location.cityName)
                     }
-                
+                    
+                }.frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .navigationTitle("Weather")
         }
@@ -28,5 +30,23 @@ struct LocationPickerView_Previews: PreviewProvider {
     static var previews: some View {
         LocationPickerView(result: .constant([]))
             .environmentObject(MapViewModel())
+    }
+}
+extension LocationPickerView {
+    private var searchListSection: some View {
+        List(self.result, id: \.self) {place in
+            VStack(alignment: .leading) {
+                Button {
+                    if !mapVM.userLocations.contains(where: { $0.coordinates == place.coordinates }) {
+                        mapVM.userLocations.append(place)
+                    }
+                    //                    self.presentationMode.wrappedValue.dismiss()
+                    result = []
+                } label: {
+                    Text(place.cityName)
+                }
+            }
+        }
+        .listStyle(PlainListStyle())
     }
 }
