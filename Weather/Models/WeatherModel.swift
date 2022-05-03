@@ -93,27 +93,27 @@ struct Weather: Codable, Hashable {
         case .the01N:
             return ("moon.stars.fill", .white, .white)
         case .the02N, .the03N, .the04N:
-            return ("cloud.moon.fill", .white, .blue)
+            return ("cloud.moon.fill", .white, .white)
         case .the09N, .the10N:
-            return ("cloud.moon.rain.fill", .white, .blue)
+            return ("cloud.moon.rain.fill", .white, .white)
         case .the11N:
-            return ("cloud.moon.bolt.fill", .white, .blue)
+            return ("cloud.moon.bolt.fill", .white, .white)
         }
     }
-    func getBackColor() -> Color {
-        switch id {
-        case 200...400:
-            return .gray
-        case 500..<600:
-            return .init(uiColor: .lightGray)
-        case 600..<800:
-            return .gray.opacity(0.25)
-        case 800:
-            return .blue
-        case 801..<805:
-            return .gray.opacity(0.5)
-        default:
-            return .gray
+    func getBackImageName() -> String {
+        switch icon {
+        case .the01D, .the02D:
+            return "sun"
+        case .the01N:
+            return "nightClear"
+        case .the02N, .the50N, .the11N:
+            return "fewCloudsNight"
+        case .the03D, .the03N, .the50D:
+            return "clouds"
+        case .the04D, .the04N, .the09D, .the09N, .the10D, .the10N, .the11D:
+            return "brokenClouds"
+        case .the13D, .the13N:
+            return "snow"
         }
     }
 }

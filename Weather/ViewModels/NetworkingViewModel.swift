@@ -9,7 +9,7 @@ import Combine
 import SwiftUI
 class NetworkingViewModel: ObservableObject {
     @Published var weatherModel: WeatherModel?
-    @Published var backColor: Color = .blue
+    @Published var backImageName: String = "clouds"
     var cancellables = Set<AnyCancellable>()
     let dataService = WeatherDataService()
     // If needed i will initialize lang and coords
@@ -20,7 +20,7 @@ class NetworkingViewModel: ObservableObject {
         dataService.getWeatherData(coords: coords, lang: lang)
         self.dataService.$weatherModel.sink { [weak self] returnedModel in
                 self?.weatherModel = returnedModel
-            self?.backColor = returnedModel?.current.weather[0].getBackColor() ?? .gray
+            self?.backImageName = returnedModel?.current.weather[0].getBackImageName() ?? "clouds"
         }.store(in: &self.cancellables)
     }
 }
