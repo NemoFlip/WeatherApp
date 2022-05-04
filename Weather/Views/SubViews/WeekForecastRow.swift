@@ -27,15 +27,13 @@ struct WeekForecastRow: View {
                             .foregroundColor(.theme.lightBlue)
                             .font(.system(size: 12))
                     }
-                }
+                }.frame(maxWidth: 50, maxHeight: 50)
                 Spacer()
                 HStack {
                     Text("\(Int(round(model.temp.min)))º")
                         .secondaryText()
                         .subTextSquare()
-                        
                     Spacer()
-                
                     Text("\(Int(round(model.temp.max)))º")
                         .subTextSquare()
                 }

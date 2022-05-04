@@ -11,7 +11,6 @@ struct HourlyForecastRow: View {
     let hourlyModel: Current
     let timeOffset: Int
     var body: some View {
-//        VStack(spacing: (hourlyModel.pop ?? 0) >= 0.1 ? 2 : 10) {
         VStack {
             Group {
                 Text("\(checkNowTime() ? "Now" : getDateFromUNIX(timeOffset: timeOffset, currentDate: hourlyModel.dt ,dateFormat: "h"))")
