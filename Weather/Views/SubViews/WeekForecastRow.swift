@@ -25,7 +25,7 @@ struct WeekForecastRow: View {
                     if let rainChance = model.pop, rainChance >= 0.1 {
                         Text("\(Int(rainChance * 100))%")
                             .foregroundColor(.theme.lightBlue)
-                            .font(.system(size: 12))
+                            .font(.system(size: 13))
                     }
                 }.frame(maxWidth: 50, maxHeight: 50)
                 Spacer()

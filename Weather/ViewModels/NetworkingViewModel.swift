@@ -20,7 +20,7 @@ class NetworkingViewModel: ObservableObject {
         dataService.getWeatherData(coords: coords, lang: lang)
         self.dataService.$weatherModel.sink { [weak self] returnedModel in
                 self?.weatherModel = returnedModel
-            self?.backImageName = returnedModel?.current.weather[0].getBackImageName() ?? "clouds"
+                self?.backImageName = returnedModel?.current.weather[0].getBackImageName() ?? "clouds"
         }.store(in: &self.cancellables)
     }
 }

@@ -16,7 +16,8 @@ struct LocationPickerView: View {
             ScrollView {
                 VStack {
                     ForEach(mapVM.userLocations, id: \.self) { location in
-                        Text(location.cityName)
+                        CityRectangleView(cityName: location.cityName, netVM: NetworkingViewModel(coords: location.coordinates, lang: mapVM.getLanguage()))
+                            .padding(.horizontal, 5)
                     }
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)

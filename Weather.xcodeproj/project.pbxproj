@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E10548132822D43500698E2B /* CityRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10548122822D43500698E2B /* CityRectangleView.swift */; };
 		E11E781428006E2A00D594D9 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E781328006E2A00D594D9 /* SearchBarView.swift */; };
 		E11E7816280077BD00D594D9 /* CLLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E7815280077BD00D594D9 /* CLLocation.swift */; };
 		E11E781828007BA600D594D9 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E781728007BA600D594D9 /* PreviewProvider.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E10548122822D43500698E2B /* CityRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRectangleView.swift; sourceTree = "<group>"; };
 		E11E781328006E2A00D594D9 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		E11E7815280077BD00D594D9 /* CLLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocation.swift; sourceTree = "<group>"; };
 		E11E781728007BA600D594D9 /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				E1E3051D28089A94009B6634 /* WeekForecastRow.swift */,
 				E1F7A5C4281ADC1C0077E27B /* HourlyForecastRow.swift */,
 				E1E3051F28089DB5009B6634 /* WeatherScreenHeader.swift */,
+				E10548122822D43500698E2B /* CityRectangleView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				E195E29327F8D31900380F43 /* LaunchShape.swift in Sources */,
 				E1F551812802114800B33E12 /* WeatherRectangleView.swift in Sources */,
 				E1213217280DD01D00B0B086 /* Enums.swift in Sources */,
+				E10548132822D43500698E2B /* CityRectangleView.swift in Sources */,
 				E1C3E59A28049FD700D357E4 /* Array.swift in Sources */,
 				E195E29527F8D33800380F43 /* LaunchScreen.swift in Sources */,
 				E11E7816280077BD00D594D9 /* CLLocation.swift in Sources */,

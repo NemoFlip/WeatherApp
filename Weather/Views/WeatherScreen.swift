@@ -51,7 +51,6 @@ struct WeatherScreen: View {
                 .ignoresSafeArea()
 //                .overlay(.thinMaterial)
         )
-//        .background(networkingVM.backColor.ignoresSafeArea())
     }
     func getTitleOpactiy() -> CGFloat {
         let titleOffset = -getTitleOffset()
@@ -109,6 +108,12 @@ extension WeatherScreen {
                 HStack(spacing: 30) {
                     ForEach(networkingVM.weatherModel?.hourly ?? [WeatherScreen.dev.hourlyModel], id: \.self) { hourlyModel in
                         HourlyForecastRow(hourlyModel: hourlyModel, timeOffset: networkingVM.weatherModel?.timezone_offset ?? 0)
+                        if getDateFromUNIX(timeOffset: networkingVM.weatherModel?.timezone_offset ?? 0, currentDate: hourlyModel.dt, dateFormat: "ha") == "11PM" {
+                            RoundedRectangle(cornerRadius: 50)
+                                .fill(.gray.opacity(0.3))
+                                .frame(width: 2)
+                                .padding(.vertical, 5)
+                        }
                     }
                 }
             }
@@ -146,7 +151,7 @@ extension WeatherScreen {
                         .onPreferenceChange(CustomHeightPreferenceKey.self) { self.heightRect = $0 }
                     } else {
                         item.view
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading) // .leading for all but WindView
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading) 
                             .frame(height: heightRect)
                     }
                 } label: {
