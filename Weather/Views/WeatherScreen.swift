@@ -91,7 +91,7 @@ extension WeatherScreen {
                 .font(.system(size: 80, weight: .thin))
             Group {
                 Text(networkingVM.weatherModel?.current.weather[0].weatherDescription.firstCapitalized ?? "")
-                Text("H: \(Int(round(networkingVM.weatherModel?.daily[0].temp.max ?? 0)))º  L: \(Int(round(networkingVM.weatherModel?.daily[0].temp.min ?? -1)))º")
+                Text("L: \(Int(round(networkingVM.weatherModel?.daily[0].temp.min ?? -1)))º  H: \(Int(round(networkingVM.weatherModel?.daily[0].temp.max ?? 0)))º")
                     .padding(.bottom, 30)
             }
             .opacity(getTitleOpactiy())

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct UserLocationKeys {
     static let userLocations = "user_locations"
+    static let userLocationIndex = "user_location_index"
 }
 
 

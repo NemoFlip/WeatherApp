@@ -9,6 +9,7 @@ import SwiftUI
 import MapKit
 import CoreLocation
 struct HomeView: View {
+    @AppStorage(UserLocationKeys.userLocationIndex) var locationIndex: Int?
     @State private var showLocationPicker = false
     @StateObject var mapVM = MapViewModel()
     @State var result = [SearchModel]()
@@ -18,7 +19,8 @@ struct HomeView: View {
                 if !mapVM.userLocations.isEmpty {
                     GeometryReader { geo in
                         let top = geo.safeAreaInsets.top
-                        WeatherScreen(coords: mapVM.userLocations[0].coordinates, lang: mapVM.getLanguage(), topEdge: top, name: $mapVM.userLocations[0].cityName)
+                        
+                        WeatherScreen(coords: mapVM.userLocations[locationIndex ?? 0].coordinates, lang: mapVM.getLanguage(), topEdge: top, name: $mapVM.userLocations[locationIndex ?? 0].cityName)
                             .ignoresSafeArea(.all, edges: .top)
                     }
                 } else {

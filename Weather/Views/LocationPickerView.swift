@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct LocationPickerView: View {
+    @AppStorage(UserLocationKeys.userLocationIndex) var locationIndex = 0
     @EnvironmentObject private var mapVM: MapViewModel
+    @Environment(\.presentationMode) var presentationMode
     @Binding var result: [SearchModel]
     @State private var showList = false
     var body: some View {
@@ -16,8 +18,14 @@ struct LocationPickerView: View {
             ScrollView {
                 VStack {
                     ForEach(mapVM.userLocations, id: \.self) { location in
-                        CityRectangleView(cityName: location.cityName, netVM: NetworkingViewModel(coords: location.coordinates, lang: mapVM.getLanguage()))
-                            .padding(.horizontal, 5)
+                        Button {
+                            locationIndex = mapVM.userLocations.firstIndex(of: location) ?? 0
+                            self.presentationMode.wrappedValue.dismiss()
+                        } label: {
+                            CityRectangleView(cityName: location.cityName, netVM: NetworkingViewModel(coords: location.coordinates, lang: mapVM.getLanguage()))
+                                .padding(.horizontal, 5)
+                        }
+
                     }
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)

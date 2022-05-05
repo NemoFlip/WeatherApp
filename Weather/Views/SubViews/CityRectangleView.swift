@@ -18,7 +18,7 @@ struct CityRectangleView: View {
                 .frame(height: 110)
                 .cornerRadius(20)
             HStack {
-                VStack {
+                VStack(alignment: .leading) {
                     Text(cityName)
                         .subTextSquare()
                     Text(getDateFromUNIX(timeOffset: netVM.weatherModel?.timezone_offset ?? 0, currentDate: netVM.weatherModel?.current.dt ?? 0, dateFormat: "HH:mm"))
@@ -27,11 +27,11 @@ struct CityRectangleView: View {
                         .smallInfoTextSquare()
                 }
                 Spacer()
-                VStack {
+                VStack(alignment: .trailing) {
                     Text("\(Int(netVM.weatherModel?.current.temp ?? 0))º")
                         .bigInfoTextSquare()
                     Spacer()
-                    Text("H: \(Int(round(netVM.weatherModel?.daily[0].temp.max ?? 0)))º  L: \(Int(round(netVM.weatherModel?.daily[0].temp.min ?? -1)))º")
+                    Text("L: \(Int(round(netVM.weatherModel?.daily[0].temp.min ?? -1)))º  H: \(Int(round(netVM.weatherModel?.daily[0].temp.max ?? 0)))º")
                         .smallInfoTextSquare()
                 }
             }
