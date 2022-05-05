@@ -17,18 +17,23 @@ struct LocationPickerView: View {
         NavigationView {
             ScrollView {
                 VStack {
+                    SearchBarView(result: $result)
                     ForEach(mapVM.userLocations, id: \.self) { location in
                         Button {
                             locationIndex = mapVM.userLocations.firstIndex(of: location) ?? 0
                             self.presentationMode.wrappedValue.dismiss()
                         } label: {
                             CityRectangleView(cityName: location.cityName, netVM: NetworkingViewModel(coords: location.coordinates, lang: mapVM.getLanguage()))
+                                .frame(maxWidth: .infinity)
                                 .padding(.horizontal, 5)
+                                
                         }
-
+                        
                     }
                     
-                }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .navigationTitle("Weather")
         }

@@ -18,9 +18,12 @@ class NetworkingViewModel: ObservableObject {
     }
     func addSubscribers(coords: CLLocationCoordinate2D, lang: String) {
         dataService.getWeatherData(coords: coords, lang: lang)
-        self.dataService.$weatherModel.sink { [weak self] returnedModel in
-                self?.weatherModel = returnedModel
-                self?.backImageName = returnedModel?.current.weather[0].getBackImageName() ?? "clouds"
-        }.store(in: &self.cancellables)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.dataService.$weatherModel.sink { [weak self] returnedModel in
+                    self?.weatherModel = returnedModel
+                    self?.backImageName = returnedModel?.current.weather[0].getBackImageName() ?? "clouds"
+            }.store(in: &self.cancellables)
+        }
+        
     }
 }

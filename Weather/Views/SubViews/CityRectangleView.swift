@@ -14,8 +14,9 @@ struct CityRectangleView: View {
         ZStack {
             Image(netVM.backImageName)
                 .resizable()
-                .scaledToFill()
                 .frame(height: 110)
+                .frame(maxWidth: .infinity)
+                .scaledToFit()
                 .cornerRadius(20)
             HStack {
                 VStack(alignment: .leading) {
@@ -37,7 +38,6 @@ struct CityRectangleView: View {
             }
             .padding()
         }
-        .frame(height: 110)
         .foregroundColor(.white)
         
     }

@@ -14,7 +14,7 @@ struct SearchBarView: View {
     var body: some View {
         VStack(spacing: 0) {
             SearchBar(result: $result)
-//            Divider()
+            Divider()
             if !self.result.isEmpty {
                 searchListSection
             } else {
@@ -43,6 +43,6 @@ extension SearchBarView {
             }
         }
         .listStyle(PlainListStyle())
-//        .frame(height: UIScreen.main.bounds.height / 2)
+        .frame(minHeight: UIScreen.main.bounds.height / 15, maxHeight: UIScreen.main.bounds.height / 2)
     }
 }
