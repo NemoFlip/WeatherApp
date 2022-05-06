@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchBarView: View {
     @EnvironmentObject private var mapVM: MapViewModel
+    let noLocation: Bool
     @Environment(\.presentationMode) var presentationMode
     @Binding var result: [SearchModel]
     var body: some View {
@@ -17,13 +18,13 @@ struct SearchBarView: View {
             Divider()
             if !self.result.isEmpty {
                 searchListSection
-            } else {
-//                Spacer()
-//                    .frame(height: UIScreen.main.bounds.height / 2)
+            }
+            if noLocation {
+                Spacer()
+            
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-//        .padding(.horizontal, 25)
     }
 }
 

@@ -15,23 +15,13 @@ struct HomeView: View {
     @State var result = [SearchModel]()
     var body: some View {
         ZStack {
-            VStack {
-                if !mapVM.userLocations.isEmpty {
-                    GeometryReader { geo in
-                        let top = geo.safeAreaInsets.top
-                        
-                        WeatherScreen(coords: mapVM.userLocations[locationIndex ?? 0].coordinates, lang: mapVM.getLanguage(), topEdge: top, name: $mapVM.userLocations[locationIndex ?? 0].cityName)
-                            .ignoresSafeArea(.all, edges: .top)
-                    }
-                } else {
-                    noLocationButtonSection
-                }
-            }
+            weatherScreenSection
+            
             tabBarSection
         }
         .onAppear { mapVM.locationManager.delegate = mapVM }
         .sheet(isPresented: $mapVM.noLocation) {
-            SearchBarView(result: $result)
+            SearchBarView(noLocation: true, result: $result)
         }
         .environmentObject(mapVM)
     }
@@ -45,6 +35,20 @@ struct HomeView_Previews: PreviewProvider {
 }
 
 extension HomeView {
+    private var weatherScreenSection: some View {
+        VStack {
+            if !mapVM.userLocations.isEmpty {
+                GeometryReader { geo in
+                    let top = geo.safeAreaInsets.top
+                    
+                    WeatherScreen(coords: mapVM.userLocations[locationIndex ?? 0].coordinates, lang: mapVM.getLanguage(), topEdge: top, name: $mapVM.userLocations[locationIndex ?? 0].cityName)
+                        .ignoresSafeArea(.all, edges: .top)
+                }
+            } else {
+                noLocationButtonSection
+            }
+        }
+    }
     private var noLocationButtonSection: some View {
         Button {
             mapVM.noLocation.toggle()
@@ -72,12 +76,11 @@ extension HomeView {
                 } content: {
                     LocationPickerView(result: $result)
                 }
-
+                
             }
             .padding(8)
-//            .background(Color.blue.overlay(.ultraThinMaterial).ignoresSafeArea(.all, edges: .bottom))
             .background(.ultraThinMaterial)
-                
+            
         }.frame(maxHeight: .infinity, alignment: .bottom)
     }
 }

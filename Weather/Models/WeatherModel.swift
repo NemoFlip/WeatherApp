@@ -34,7 +34,6 @@ struct Current: Codable, Hashable {
     let windGust: Double?
     let weather: [Weather]
     let rain: Rain?
-    // Добавить Snow(проверить на городе, где идет снег)
     let pop: Double?
     
     enum CodingKeys: String, CodingKey {
@@ -154,42 +153,21 @@ struct Daily: Codable, Hashable {
     }
     let dt, sunrise, sunset, moonrise: Int
     let moonset: Int
-//    let moonPhase: Double
     let temp: Temp
-//    let feelsLike: FeelsLike
-//    let pressure, humidity: Int
-//    let dewPoint, windSpeed: Double
-//    let windDeg: Int
-//    let windGust: Double
     let weather: [Weather]
-//    let clouds: Int
     let pop: Double
     let rain: Double?
     let uvi: Double
-//    let snow: Double?
     
     enum CodingKeys: String, CodingKey {
         case dt, sunrise, sunset, moonrise, moonset
-//        case moonPhase = "moon_phase"
         case temp
         case rain
-//        case feelsLike = "feels_like"
-//        case pressure, humidity
-//        case dewPoint = "dew_point"
-//        case windSpeed = "wind_speed"
-//        case windDeg = "wind_deg"
-//        case windGust = "wind_gust"
         case weather
         case uvi
         case pop
-//        , clouds, pop, rain, uvi, snow
     }
 }
-
-// MARK: - FeelsLike
-//struct FeelsLike: Codable {
-//    let day, night, eve, morn: Double
-//}
 
 // MARK: - Temp
 struct Temp: Codable, Hashable {

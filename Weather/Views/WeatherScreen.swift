@@ -49,7 +49,6 @@ struct WeatherScreen: View {
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
-//                .overlay(.thinMaterial)
         )
     }
     func getTitleOpactiy() -> CGFloat {

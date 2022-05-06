@@ -12,27 +12,11 @@ struct HourlyForecastRow: View {
     let timeOffset: Int
     var body: some View {
         VStack {
-            Group {
-                Text("\(checkNowTime() ? "Now" : getDateFromUNIX(timeOffset: timeOffset, currentDate: hourlyModel.dt ,dateFormat: "h"))")
-                    .fontWeight(.medium)
-                +
-                Text("\(checkNowTime() ? "" : getDateFromUNIX(timeOffset: timeOffset, currentDate: hourlyModel.dt ,dateFormat: "a"))")
-                    .fontWeight(.medium)
-                    .font(.footnote)
-            }.frame(maxHeight: .infinity, alignment: .top)
-            VStack(spacing: 0) {
-                Image(systemName: hourlyModel.weather[0].getIconName().name)
-                    .foregroundStyle(hourlyModel.weather[0].getIconName().primaryColor, hourlyModel.weather[0].getIconName().secondaryColor, Color.theme.lightBlue)
-                    .font((hourlyModel.pop ?? 0) >= 0.1 ? .title3 : .title2)
-                if let rainChance = hourlyModel.pop, rainChance >= 0.1 {
-                    Text("\(Int(rainChance * 100))%")
-                        .foregroundColor(.theme.lightBlue)
-                        .font(.system(size: 14))
-                }
-            }
-            .frame(maxHeight: .infinity, alignment: .center)
-            Text("\(Int(round(hourlyModel.temp)))º")
-                .frame(maxHeight: .infinity, alignment: .bottom)
+            timeSection
+            
+            iconSection
+            
+            tempSection
         }
     }
     func checkNowTime() -> Bool {
@@ -43,5 +27,35 @@ struct HourlyForecastRow: View {
 struct HourlyForecastRow_Previews: PreviewProvider {
     static var previews: some View {
         HourlyForecastRow(hourlyModel: dev.hourlyModel, timeOffset: 0)
+    }
+}
+
+extension HourlyForecastRow {
+    private var timeSection: some View {
+        Group {
+            Text("\(checkNowTime() ? "Now" : getDateFromUNIX(timeOffset: timeOffset, currentDate: hourlyModel.dt ,dateFormat: "h"))")
+                .fontWeight(.medium)
+            +
+            Text("\(checkNowTime() ? "" : getDateFromUNIX(timeOffset: timeOffset, currentDate: hourlyModel.dt ,dateFormat: "a"))")
+                .fontWeight(.medium)
+                .font(.footnote)
+        }.frame(maxHeight: .infinity, alignment: .top)
+    }
+    private var iconSection: some View {
+        VStack(spacing: 0) {
+            Image(systemName: hourlyModel.weather[0].getIconName().name)
+                .foregroundStyle(hourlyModel.weather[0].getIconName().primaryColor, hourlyModel.weather[0].getIconName().secondaryColor, Color.theme.lightBlue)
+                .font((hourlyModel.pop ?? 0) >= 0.1 ? .title3 : .title2)
+            if let rainChance = hourlyModel.pop, rainChance >= 0.1 {
+                Text("\(Int(rainChance * 100))%")
+                    .foregroundColor(.theme.lightBlue)
+                    .font(.system(size: 14))
+            }
+        }
+        .frame(maxHeight: .infinity, alignment: .center)
+    }
+    private var tempSection: some View {
+        Text("\(Int(round(hourlyModel.temp)))º")
+            .frame(maxHeight: .infinity, alignment: .bottom)
     }
 }

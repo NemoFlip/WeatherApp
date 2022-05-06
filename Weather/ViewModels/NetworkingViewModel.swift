@@ -12,7 +12,6 @@ class NetworkingViewModel: ObservableObject {
     @Published var backImageName: String = "clouds"
     var cancellables = Set<AnyCancellable>()
     let dataService = WeatherDataService()
-    // If needed i will initialize lang and coords
     init(coords: CLLocationCoordinate2D, lang: String) {
         addSubscribers(coords: coords, lang: lang)
     }

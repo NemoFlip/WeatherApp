@@ -17,19 +17,9 @@ struct LocationPickerView: View {
         NavigationView {
             ScrollView {
                 VStack {
-                    SearchBarView(result: $result)
-                    ForEach(mapVM.userLocations, id: \.self) { location in
-                        Button {
-                            locationIndex = mapVM.userLocations.firstIndex(of: location) ?? 0
-                            self.presentationMode.wrappedValue.dismiss()
-                        } label: {
-                            CityRectangleView(cityName: location.cityName, netVM: NetworkingViewModel(coords: location.coordinates, lang: mapVM.getLanguage()))
-                                .frame(maxWidth: .infinity)
-                                .padding(.horizontal, 5)
-                                
-                        }
-                        
-                    }
+                    SearchBarView(noLocation: false, result: $result)
+                    
+                    weatherScreensSection
                     
                 }
                 
@@ -40,6 +30,7 @@ struct LocationPickerView: View {
     }
 }
 
+
 struct LocationPickerView_Previews: PreviewProvider {
     static var previews: some View {
         LocationPickerView(result: .constant([]))
@@ -47,20 +38,17 @@ struct LocationPickerView_Previews: PreviewProvider {
     }
 }
 extension LocationPickerView {
-    private var searchListSection: some View {
-        List(self.result, id: \.self) {place in
-            VStack(alignment: .leading) {
-                Button {
-                    if !mapVM.userLocations.contains(where: { $0.coordinates == place.coordinates }) {
-                        mapVM.userLocations.append(place)
-                    }
-                    //                    self.presentationMode.wrappedValue.dismiss()
-                    result = []
-                } label: {
-                    Text(place.cityName)
-                }
+    private var weatherScreensSection: some View {
+        ForEach(mapVM.userLocations, id: \.self) { location in
+            Button {
+                locationIndex = mapVM.userLocations.firstIndex(of: location) ?? 0
+                self.presentationMode.wrappedValue.dismiss()
+            } label: {
+                CityRectangleView(cityName: location.cityName, netVM: NetworkingViewModel(coords: location.coordinates, lang: mapVM.getLanguage()))
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 5)
+                
             }
         }
-        .listStyle(PlainListStyle())
     }
 }
