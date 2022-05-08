@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct WeatherApp: App {
-    @State var endAnimation = false
+    @State private var endAnimation = false
     var body: some Scene {
         WindowGroup {
             ZStack {

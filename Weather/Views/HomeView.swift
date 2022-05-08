@@ -11,7 +11,7 @@ import CoreLocation
 struct HomeView: View {
     @AppStorage(UserLocationKeys.userLocationIndex) var locationIndex: Int?
     @State private var showLocationPicker = false
-    @StateObject var mapVM = MapViewModel()
+    @StateObject private var mapVM = MapViewModel()
     @State var result = [SearchModel]()
     var body: some View {
         ZStack {
