@@ -18,8 +18,12 @@ class NetworkingViewModel: ObservableObject {
         }
     }
     private func addSubscribers(coords: CLLocationCoordinate2D, lang: String) async {
-        self.weatherModel = await dataService.getWeatherData(coords: coords, lang: lang)
-        self.backImageName = weatherModel?.current.weather[0].getBackImageName() ?? "clouds"
+        let tempModel =  await dataService.getWeatherData(coords: coords, lang: lang)
+        await MainActor.run {
+            self.weatherModel = tempModel
+            self.backImageName = weatherModel?.current.weather[0].getBackImageName() ?? "clouds"
+        }
+        
 //        dataService.getWeatherData(coords: coords, lang: lang)
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
 //            self.dataService.$weatherModel.sink { [weak self] returnedModel in
